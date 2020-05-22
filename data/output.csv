@@ -1,0 +1,10 @@
+group,var1,var2
+TensorFlow,6200,1642
+Keras,9120,719
+PyTorch,1780,760
+Caffe,815,270
+Theano,428,328
+MXNET,524,587
+CNTK,223,189
+DeepLearning4J,70,232
+Chainer,91,182
