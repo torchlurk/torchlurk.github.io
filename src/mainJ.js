@@ -29,7 +29,7 @@ selectedDisplay.classList.toggle("unClicked");
 /* ONCE THE SWIPER IS LOADED, THE JSON IS STORED IN THE VARIABLE jsonData FOR FUTURE USE*/
 let jsonData = [];
 ////1: creation of the swiper with the corresponding layers////
-$.getJSON("../saved_model/copyTrash.json",function(json) {
+$.getJSON("../saved_model/vgg16_imagenet.json",function(json) {
   jsonData = json;
   console.log("json charge");
 let arrayOfSlidesToAppend = [];
