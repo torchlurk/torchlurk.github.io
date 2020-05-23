@@ -52,7 +52,7 @@ selectedDisplay.classList.toggle("unClicked");
 /* ONCE THE SWIPER IS LOADED, THE JSON IS STORED IN THE VARIABLE jsonData FOR FUTURE USE*/
 let jsonData = [];
 ////1: creation of the swiper with the corresponding layers////
-$.getJSON("../vgg16_imagenet.json",function(json) {
+$.getJSON("../vgg16_imagenet_small.json",function(json) {
   jsonData = json;
   console.log("json charge");
   rects.forEach( el =>  {
@@ -129,7 +129,7 @@ texts.forEach( el =>  {
 /* drawGridContainer draws the grid of squares (each unit of the chosed layer).
 each unit has a data-layer-ID and data-filter-Id attribute*/
 function drawGridContainer(layerId){
-  titelFilter.innerHTML ="choose your filter";
+  //titelFilter.innerHTML ="choose your filter";
   console.log(jsonData[layerId]);
   let filters = jsonData[layerId].filters;
   let filterNumber = filters.length;
@@ -176,6 +176,7 @@ gridContainer.addEventListener("dblclick", function(e){
 
 // la fct createModal crée la popUp en lui donnant comme attribut les data-layerId et data-filterId du carré clické et rajoute un titre ,une description,les images et les histos
 function createModal(layerId,filterId){
+  console.log(jsonData[layerId])
   let filter = jsonData[layerId].filters[filterId];
   modalContainer.setAttribute("data-layer-id",`${layerId}`);
   modalContainer.setAttribute("data-filter-id",`${filterId}`);
