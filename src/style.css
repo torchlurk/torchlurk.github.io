@@ -3,7 +3,6 @@
   Torch color: #ee4c2c = rgb(238,76,44)
 */
 
-
 * {
   margin: 0;
   padding: 0;
@@ -693,6 +692,7 @@ ul.icons li {
 
 .model_panel_infos {
   padding: 20px;
+  padding-bottom: 0px;
   text-align: center; /*Here added*/
   display: flex;
   flex-direction: row;
@@ -741,7 +741,10 @@ ul.icons li {
 
 
 .model_panel_bottom {
-  padding: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 25px;
+  padding-bottom: 100px;
   text-align: center; /*Here added*/
   display: flex;
   flex-direction: row;
@@ -769,7 +772,7 @@ ul.icons li {
   background: #ddd;
   box-shadow: 3px 3px 8px rgba(0,0,0,.3);
   left:20px;
-  transform: scaleX(.4)rotate(5deg)scale(.8); /*scaleY(.7)rotate(50deg)scale(.8);*/
+  transform: scaleX(.9)rotate(15deg)scale(0.9); /*scaleY(.7)rotate(50deg)scale(.8);*/
 }
 
 #over img {

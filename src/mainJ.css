@@ -1,10 +1,9 @@
-/* c'est un copié collé de filtersPage.css !*/
+/* ############################## TITLE ############################## */
 .titel-page {
-font-size: 4.5rem;
-font-weight: bold;
+  font-size: 4.5rem;
+  font-weight: bold;
   text-align: center;
   color: #615f5f;
-
 }
 
 .titel-filter {
@@ -18,6 +17,7 @@ font-weight: bold;
  fill: orangered;
  opacity: 0.9;
 }
+
 .histo text {
   color: black;
   font-weight: bold;
@@ -50,19 +50,21 @@ body{
   background-size: 180px 180px;
 }*/
 
-.main_wrapper{ /* contains filtersPage :))*/
+.main_wrapper { /* contains filtersPage :))*/
   /*width: 70%;*/
   /*height:100%*/
  /* margin: 0 auto;*/
 }
-/*---CSS for the Grid part------------!! dont know how it works ! :)) -------------------*/
-.grid-wrapper{
+
+/* ################################## GRID ################################## */
+.grid-wrapper {
   display: flex;
   margin: auto;
   width: 100%;
  /* height: 70%;*/
 }
-.grid-container{
+
+.grid-container {
   /*padding: 10px;*/
   width: 100%;
   /*height: 100%;*/
@@ -70,7 +72,6 @@ body{
   display: grid;
   grid-template-columns: repeat(auto-fill, 12%);
   grid-auto-rows: 1fr;
-
 }
 
 .grid-container::before {
@@ -90,14 +91,15 @@ body{
   border: 1px grey solid;
 }
 
-.griditem{
+.griditem {
  /*background-color: teal;*/
   /*the margin should be calculated in JS
   but margin : 4px is nice...*/
   margin: 4px;
   border-radius: 5px;
 }
-.griditem:hover{
+
+.griditem:hover {
   transform: scale(1.3);
   z-index: 2;
   /*border: 2px solid #3ee7ad;*/
@@ -114,8 +116,7 @@ body{
 }
 
 
-/*-------CSS for the pop-ups--------*/
-
+/* ################################# POP UP ################################# */
 .modal-container{
   position: fixed;
   left: 50%;
@@ -270,7 +271,7 @@ margin-left: 3px;
 
 }
 
-/*---- CSS pour avoir 2 colonnes !!! --- */
+/* ################################# 2 COLS ################################# */
 .firstColumn {
   float: left;
   width: 40%;
@@ -290,10 +291,11 @@ margin-left: 3px;
   clear: both;
 }
 
-.swiper-container{
+.swiper-container {
   /* see HTML !*/
 }
-.main_wrapper{
+
+.main_wrapper {
   width: 100%;
   margin: 0 auto;
 }
@@ -312,7 +314,6 @@ margin-left: 3px;
   box-sizing:border-box;
 }
 
-
 body {
 	font-family: "Open Sans", Arial, sans-serif;
 	font-size: 25px; /*1.1rem*/
@@ -320,8 +321,6 @@ body {
   padding:0;
   /*background: #004882;*/
 }
-
-
 
 h1 {
   font-size: 80px;

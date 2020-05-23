@@ -1,3 +1,14 @@
+let rects = document.querySelectorAll("rect");
+let texts = document.querySelectorAll("text");
+
+
+
+
+
+
+
+
+
 /* SELECTION OF "ALL" THE HTML ELEMENTS*/
 let titelFilter = document.querySelector(".titel-filter");
 
@@ -7,13 +18,25 @@ let closeX = document.querySelector(".close-div");
 let modalContainer = document.querySelector(".modal-container");
 let contentWrapper = document.querySelector(".content-wrapper");
 
-let favImgsDiv = document.querySelector(".avg_imgs");
-let gradPathAvgDiv = document.querySelector(".avg_imgs_grad");
-let maxImgsDiv = document.querySelector(".max_imgs");
-let gradPathMaxDiv = document.querySelector(".max_imgs_grad");
+let favImgsDivFirst = document.querySelector(".avg_imgs-firstRow");
+let favImgsDivSecond = document.querySelector(".avg_imgs-secondRow");
+
+let gradPathAvgDivFirst = document.querySelector(".avg_imgs_grad-firstRow");
+let gradPathAvgDivSecond = document.querySelector(".avg_imgs_grad-secondRow");
+
+let maxImgsDivFirst = document.querySelector(".max_imgs-firstRow");
+let maxImgsDivSecond = document.querySelector(".max_imgs-secondRow");
+
+let gradPathMaxDivFirst = document.querySelector(".max_imgs_grad-firstRow");
+let gradPathMaxDivSecond = document.querySelector(".max_imgs_grad-secondRow");
+
 let actmaxImDiv = document.querySelector(".actmax_img");
-//**let maxCropDiv = document.querySelector(".max_imgs_crop");
-//**let maxGradCropDiv = document.querySelector(".max_imgs_crop_grad");
+let maxCropDivFirst = document.querySelector(".max_imgs_crop-firstRow");
+let maxCropDivSecond = document.querySelector(".max_imgs_crop-secondRow");
+
+let maxGradCropDivFirst = document.querySelector(".max_imgs_crop_grad-firstRow");
+let maxGradCropDivSecond = document.querySelector(".max_imgs_crop_grad-secondRow");
+
 
 let favCatHistogram = document.querySelector(".favCatHistogram");
 let favHistogram = document.querySelector(".favHistogram");
@@ -29,43 +52,78 @@ selectedDisplay.classList.toggle("unClicked");
 /* ONCE THE SWIPER IS LOADED, THE JSON IS STORED IN THE VARIABLE jsonData FOR FUTURE USE*/
 let jsonData = [];
 ////1: creation of the swiper with the corresponding layers////
-$.getJSON("../saved_model/vgg16_imagenet.json",function(json) {
+$.getJSON("../vgg16_imagenet.json",function(json) {
   jsonData = json;
   console.log("json charge");
-let arrayOfSlidesToAppend = [];
-for(layer of json){
-  let slide = `<div class="swiper-slide" data-swiper-slide-index="${layer.id}">
-                      <div class="slide-layer-up">
-                          <h3 class="layer-name">${layer.name}</h3>
-                      </div>
-                      <div class="slide-layer-down">
-                          <p class="layer-description">number of filters: ${layer.n_output}</p>
-                      </div>
-                  </div> `;
-  arrayOfSlidesToAppend.push(slide);
-}
-mySwiper.appendSlide(arrayOfSlidesToAppend);
-//mySwiper.pagination.update();
-//mySwiper.scrollbar.updateSize();
-mySwiper.update() // Mandatory to update the swiper after adding/removing slides
-//add events to the slides -> mySwiper.on(event,handler);
-mySwiper.on("doubleTap",function(e){
-if(e.target.className.includes("swiper-slide")){
-  //it means that it is the slide and not the container which is clicked
-  let layerIdString = e.target.dataset.swiperSlideIndex;
-  let layerId = parseInt(layerIdString);
-  console.log(layerId);
-  gridContainer.innerHTML = "";
-  titelFilter.innerHTML = "";
-  if(json[layerId].filters != undefined){ // condition for RELU layers
-  drawGridContainer(layerId);
-  }
+  rects.forEach( el =>  {
+    el.style.cursor = "pointer";
+    el.addEventListener("mouseover",function(e){
+      console.log(e.target);
+      e.target.style.fill = "orange";
 
-} else{
-  return;
-}
+    });
+    el.addEventListener("mouseout",function(e){
+      console.log(e.target);
+      e.target.style.fill = "white";
+
+    });
+    el.addEventListener("click",function(e){
+        gridContainer.innerHTML = "";
+        titelFilter.innerHTML = "";
+        console.log("rect: layer ->"+ el.dataset.layerId);
+        let layerIdString = e.target.dataset.layerId;
+        let layerId = parseInt(layerIdString);
+        console.log(layerId);
+        console.log(json);
+        console.log(jsonData[layerId].filters);
+        if(jsonData[layerId].filters != undefined){ // condition for RELU layers
+            drawGridContainer(layerId);
+            }
 });
+
+});
+
+
+
+
+
+/*
+texts.forEach( el =>  {
+    el.style.cursor = "pointer";
+
+    el.addEventListener("mouseover",function(e){
+      console.log(e.target.dataset.layerId);
+      let layerId = e.target.parentElement.dataset.layerId;
+
+      let rect = document.querySelector(`rect[data-layer-id = ${layerId}]`);
+      rect.style.fill = "orange";
+
+    });
+
+
+
+
+    el.addEventListener("click",function(e){
+        gridContainer.innerHTML = "";
+        titelFilter.innerHTML = "";
+        console.log("text: layer ->"+ el.dataset.layerId);
+        console.log(e.target);
+        let textNode = e.target.parentElement;
+        console.log(textNode);
+        let layerIdString = textNode.dataset.layerId;
+        let layerId = parseInt(layerIdString);
+        if(json[layerId].filters != undefined){ // condition for RELU layers
+            drawGridContainer(layerId);
+            }
+
+    });
+
+});
+*/
 });// end of get Json for swiper
+
+
+
 
 
 /* drawGridContainer draws the grid of squares (each unit of the chosed layer).
@@ -87,7 +145,7 @@ function drawGridContainer(layerId){
   gridItem.setAttribute("data-layer-id",`${layerId}`);
   gridItem.setAttribute("data-filter-id",`${filter.id}`);
   gridItem.innerHTML = `<span class="unitNumber" data-layer-id = "${layerId}" data-filter-id = "${filter.id}" >unit ${filter.id}</span>`;
-  gridItem.style.backgroundImage = `url(${filter.actmax_img})`; // met les filter_VIZ !
+  gridItem.style.backgroundImage = `url(.${filter.filter_viz})`; // met les filter_VIZ !
   gridContainer.appendChild(gridItem);
   }
   i += 1;
@@ -116,22 +174,17 @@ gridContainer.addEventListener("dblclick", function(e){
 });
 
 
-
-
-
-// la fct createModal crée la popUp en lui donnant comme attribut les data-layerId et data-filterId du carré clické et rajoute un titre (choose your filter),une description,les images et les histos
+// la fct createModal crée la popUp en lui donnant comme attribut les data-layerId et data-filterId du carré clické et rajoute un titre ,une description,les images et les histos
 function createModal(layerId,filterId){
   let filter = jsonData[layerId].filters[filterId];
   modalContainer.setAttribute("data-layer-id",`${layerId}`);
   modalContainer.setAttribute("data-filter-id",`${filterId}`);
-
 
   /**display content avg_imgs-display**/
   // displayTitel = histo_counts_avg
   //histo_counts_avg-description  -> Mentha
   // favCatHistogram -> dessiner histogram !!! :))) DELAY
   console.log(document.body.clientWidth);
-
   let windowWidth = document.body.clientWidth;
   drawHistos("favCatHistogram",filter.histo_counts_avg,windowWidth*0.6, 1000,1000);
 
@@ -139,19 +192,32 @@ function createModal(layerId,filterId){
   // displayTitel avg_imgs
   //avg_imgs-description -> Mentha
   //avg_imgs
+  let ifav = 0;
   for(el of filter.avg_imgs){
+
     let im = document.createElement("img");
     im.src = el;
-    favImgsDiv.appendChild(im);
+    if(ifav < 4){
+    favImgsDivFirst.appendChild(im);
+    }else{
+    favImgsDivSecond.appendChild(im);
+    }
+    ifav += 1;
  }
   // displayTitel avg_imgs_grad
   //avg_imgs_grad-description -> Mentha
   //avg_imgs_grad
+  let igrad = 0;
   for(el of filter.avg_imgs_grad){
       let im = document.createElement("img");
       im.src = el;
-      gradPathAvgDiv.appendChild(im);
-   }
+      if(igrad < 4){
+        gradPathAvgDivFirst.appendChild(im);
+        }else{
+        gradPathAvgDivSecond.appendChild(im);
+        }
+        igrad += 1;
+    }
   //avg_imgs_histo-description -> mentha
   //favHistogram -> dessiner Histogram !!! .))) DELAY
   drawHistos("favHistogram",filter.avg_spikes,windowWidth*0.6,1000,1000);
@@ -167,19 +233,73 @@ function createModal(layerId,filterId){
   //max_imgs titel
   //max_imgs-description -> Mentha
   //max_imgs
+  let imax = 0;
     for(el of filter.max_imgs){
        let im = document.createElement("img");
        im.src = el;
-       maxImgsDiv.appendChild(im);
+       if(imax < 4){
+        maxImgsDivFirst.appendChild(im);
+        }else{
+        maxImgsDivSecond.appendChild(im);
+        }
+        imax += 1;
+
     }
+
+// maxCropDiv
+
+let icrop = 0;
+for(el of filter.max_imgs_crop){
+   let im = document.createElement("img");
+   im.src = el;
+   if(icrop < 4){
+    maxCropDivFirst.appendChild(im);
+    }else{
+    maxCropDivSecond.appendChild(im);
+    }
+    icrop += 1;
+
+}
+
+
   //max_imgs_grad titel
   //max_imgs_grad-description -> mentha
   //max_imgs_grad
+  let imaxgrad = 0;
     for(el of filter.max_imgs_grad){
        let im = document.createElement("img");
        im.src = el;
-       gradPathMaxDiv.appendChild(im);
+       if(imaxgrad < 4){
+        gradPathMaxDivFirst.appendChild(im);
+        }else{
+        gradPathMaxDivSecond.appendChild(im);
+        }
+        imaxgrad += 1;
+
     }
+
+
+  // crop of maxGrad
+
+  let icropMaxGrad = 0;
+  for(el of filter.max_imgs_crop_grad){
+     let im = document.createElement("img");
+     im.src = el;
+     if(icropMaxGrad < 4){
+      maxGradCropDivFirst.appendChild(im);
+      }else{
+      maxGradCropDivSecond.appendChild(im);
+      }
+      icropMaxGrad += 1;
+
+  }
+
+
+
+
+
+
+
     //max_imgs_histo-description -> mentha
     //maxHistogram a dessiner !!! :))) DELAY
     drawHistos("maxHistogram",filter.max_spikes, windowWidth*0.6,1000,1000);
@@ -190,7 +310,7 @@ function createModal(layerId,filterId){
     //actmax_img-description -> mentha
     //actmax_img
     let im = document.createElement("img");
-       im.src = filter.actmax_img;
+       im.src = filter.filter_viz;
        actmaxImDiv.appendChild(im);
  /* for Yann mentha later...
    avg_imgs-description
@@ -207,11 +327,15 @@ let descrs = document.querySelectorAll(".description")
 descrs.forEach( el => el.innerHTML = "lorem industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.");
 }
 
+
+/* fonction qui supprime l'intérieur du popUp avant qu'il ne se ferme */
+
 closeX.addEventListener("click",function(){
   eraseModal();
   modalContainer.classList.remove("active");
   overlay.classList.remove("active");
  });
+
 function eraseModal(){
   modalContainer.setAttribute("data-layer-id","");
   modalContainer.setAttribute("data-filter-id","");
@@ -224,8 +348,11 @@ function eraseModal(){
   descriptions.forEach(el => el.innerHTML ="");
 }
 
+
+
+/* fonction qui dessine un histo. il faut lui donner la width du svg , le retard, l'effet et un OBJET(CAT/SPIKES) OU UN ARRAY(SPIKES)*/
 // on pourra jouer sur la Height du graph fixée ici a 500, et les margins + text-size
-function drawHistos(CanvasClassName,ArraySpikesOrCategObj,svgWidth = 500, duration = 1000,delay = 1000){
+function drawHistos(CanvasClassName,ArraySpikesOrCategObj,svgWidth = 500, duration = 1000,delay = 1000,categNumber = 10){
   let rotate = 0;
   let textAnchor;
   let dataArray = [];
@@ -238,10 +365,13 @@ function drawHistos(CanvasClassName,ArraySpikesOrCategObj,svgWidth = 500, durati
     textAnchor = "middle";
 
   }else{
+    let icategNumber = 0;
     let categObj = ArraySpikesOrCategObj;
     for (name in categObj){
       categoryNames.push(name);
       dataArray.push(categObj[name]);
+      icategNumber += 1;
+      if (icategNumber >= categNumber) break;
     }
     rotate = -40;
     textAnchor = "end";
