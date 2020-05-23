@@ -51,39 +51,63 @@ selectedDisplay.classList.toggle("unClicked");
 
 /* ONCE THE SWIPER IS LOADED, THE JSON IS STORED IN THE VARIABLE jsonData FOR FUTURE USE*/
 let jsonData = [];
+
+let json1 = [];
+let json2 = [];
+let json_concat = [];
+
+$.getJSON("../vgg16_imagenet_1.json", function(jsono) {
+  json1 = jsono;
+  $.getJSON("../vgg16_imagenet_2.json", function(json) {
+    json2 = json
+    json_concat = json1.concat(json2);
+    console.log("coucou")
+    console.log(json_concat)
+    test(json_concat)
+  });
+});
+
+//test(json_concat)
+/*
+$.getJSON("../vgg16_imagenet_2.json", function(json){
+  test(json)
+});
+*/
+/*
+$.getJSON("../vgg16_imagenet_1.json", function(jsono) {
+  test(json)
+});
+*/
+
 ////1: creation of the swiper with the corresponding layers////
-$.getJSON("../vgg16_imagenet_small.json",function(json) {
+function test(json) { //../vgg16_imagenet.json //
+
   jsonData = json;
+  console.log(jsonData)
   console.log("json charge");
   rects.forEach( el =>  {
     el.style.cursor = "pointer";
     el.addEventListener("mouseover",function(e){
-      console.log(e.target);
       e.target.style.fill = "orange";
 
     });
     el.addEventListener("mouseout",function(e){
-      console.log(e.target);
       e.target.style.fill = "white";
 
     });
     el.addEventListener("click",function(e){
         gridContainer.innerHTML = "";
         titelFilter.innerHTML = "";
-        console.log("rect: layer ->"+ el.dataset.layerId);
         let layerIdString = e.target.dataset.layerId;
         let layerId = parseInt(layerIdString);
-        console.log(layerId);
-        console.log(json);
-        console.log(jsonData[layerId].filters);
-        if(jsonData[layerId].filters != undefined){ // condition for RELU layers
+        //console.log(json);
+        //console.log(jsonData[layerId].filters);
+        if(jsonData[layerId].filters != undefined) { // condition for RELU layers
             drawGridContainer(layerId);
-            }
+        }
 });
 
 });
-
-
 
 
 
@@ -120,8 +144,9 @@ texts.forEach( el =>  {
 
 });
 */
-});// end of get Json for swiper
+};// end of get Json for swiper
 
+//test(json_concat);
 
 
 
