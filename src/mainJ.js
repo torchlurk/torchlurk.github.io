@@ -463,7 +463,10 @@ function drawHistos(CanvasClassName,ArraySpikesOrCategObj,svgWidth = 500, durati
 
   window.addEventListener("resize",function(e){
     //on resize all the histograms have to be redrawn
-    if(modalContainer.getBoundingClientRect().width =!0){
+    console.log(modalContainer.getBoundingClientRect().width);
+    if(modalContainer.getBoundingClientRect().width == 0){
+    console.log("modal is 0 in width");
+    }else{
     let windowWidth = document.body.clientWidth;
     let layerId = parseInt(modalContainer.dataset.layerId);
     let filterId = parseInt(modalContainer.dataset.filterId);
