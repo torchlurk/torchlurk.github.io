@@ -1,15 +1,5 @@
-let rects = document.querySelectorAll("rect");
-let texts = document.querySelectorAll("text");
 
-
-
-
-
-
-
-
-
-/* SELECTION OF "ALL" THE HTML ELEMENTS*/
+/****  SELECTION OF "ALL" THE HTML ELEMENTS******/
 let titelFilter = document.querySelector(".titel-filter");
 
 let gridContainer = document.querySelector(".grid-container");
@@ -44,14 +34,70 @@ let maxCatHistogram = document.querySelector(".maxCatHistogram");
 let maxHistogram = document.querySelector(".maxHistogram");
 
 let overlay = document.querySelector(".overlay");
-/*function displayContent(displayClassName){ //appele depuis HTML
-let selectedDisplay = document.querySelector("."+ displayClassName);
-selectedDisplay.classList.toggle("unClicked");
-} */
+
+
+
+
+/************ JS CODE FOR SVG PART ***************/
+// for the svg we can only hover and click on Convs_layers
+let convs = [0,2,5,7,10,12,14,17,19,21,24,26,28];
+let tspans = document.querySelectorAll(".bezier tspan"); 
+let convTexts = [] // va contenir tous les texts du svg qui sont des Conv_
+tspans.forEach( el => {
+  let layerId = parseInt((el.parentElement.dataset.layerId));
+  if(convs.includes(layerId)){
+    convTexts.push(el.parentElement);
+  }
+});
+
+/* In the HTML all <text> corresponding to a conv_ layer have the attribute ONMOUSEOVER*/
+function onHover(el){
+  el.style.cursor = "pointer";
+  layerId = el.dataset.layerId; 
+  // choppe le rectangle correspondant!!
+  let correspRect = $(`*[data-layer-id = ${layerId}]`)[0];
+  correspRect.style.fill="orange"; 
+}
+
+/* In the HTML all <text> corresponding to a conv_ layer have the attribute ONMOUSEOUT*/
+function outHover(el){
+  layerId = el.dataset.layerId; 
+  // choppe le rectangle correspondant! et si la couleur est rouge, Ca la laisse ( car clicked)
+  let correspRect = $(`*[data-layer-id = ${layerId}]`)[0];
+  if(!correspRect.classList.contains("actif") ){
+  correspRect.style.fill="white"; 
+  } 
+  }
+
+/* In the HTML all <text> corresponding to a conv_ layer have the attribute ONCLICK*/
+/* on click we put the rectangle to red, erase the gridContainer and redraw*/
+  function onSvgClick(el){
+    // permet de tout mettre tous les texts COnvs (ou pluto les rects correspondant) à inactif et white !!
+    convTexts.forEach(convText => {
+      let layerId = parseInt(convText.dataset.layerId);
+    // choppe le rectangle correspondant
+      $(`*[data-layer-id = ${layerId}]`)[0].classList.remove("actif");
+      $(`*[data-layer-id = ${layerId}]`)[0].style.fill = "white";
+  });
+
+    // ensuite le text clické (le rectangle correspondant)ce met actif et rouge
+    let layerId = parseInt(el.dataset.layerId);
+    $(`*[data-layer-id = ${layerId}]`)[0].style.fill = "red";
+    $(`*[data-layer-id = ${layerId}]`)[0].classList.add("actif");
+
+    // on efface le gridContainer + titre et on redessine
+    gridContainer.innerHTML = "";
+    titelFilter.innerHTML = "";
+    drawGridContainer(layerId);
+  }
+
+/************ JS CODE FOR SVG PART END***************/
+
+
+
 
 /* ONCE THE SWIPER IS LOADED, THE JSON IS STORED IN THE VARIABLE jsonData FOR FUTURE USE*/
 let jsonData = [];
-
 let json1 = [];
 let json2 = [];
 let json_concat = [];
@@ -63,98 +109,26 @@ $.getJSON("../vgg16_imagenet_1.json", function(jsono) {
     json_concat = json1.concat(json2);
     console.log("coucou")
     console.log(json_concat)
-    test(json_concat)
+    jsonData = json_concat;
+    console.log(jsonData)
+    console.log("json charge");
+ 
+  ///////**** ALL THE JS CODE IS WITHIN THE GETJSON */
+  
   });
 });
 
-//test(json_concat)
-/*
-$.getJSON("../vgg16_imagenet_2.json", function(json){
-  test(json)
-});
-*/
-/*
-$.getJSON("../vgg16_imagenet_1.json", function(jsono) {
-  test(json)
-});
-*/
-
-////1: creation of the swiper with the corresponding layers////
-function test(json) { //../vgg16_imagenet.json //
-
-  jsonData = json;
-  console.log(jsonData)
-  console.log("json charge");
-  rects.forEach( el =>  {
-    el.style.cursor = "pointer";
-    el.addEventListener("mouseover",function(e){
-      e.target.style.fill = "orange";
-
-    });
-    el.addEventListener("mouseout",function(e){
-      e.target.style.fill = "white";
-
-    });
-    el.addEventListener("click",function(e){
-        gridContainer.innerHTML = "";
-        titelFilter.innerHTML = "";
-        let layerIdString = e.target.dataset.layerId;
-        let layerId = parseInt(layerIdString);
-        //console.log(json);
-        //console.log(jsonData[layerId].filters);
-        if(jsonData[layerId].filters != undefined) { // condition for RELU layers
-            drawGridContainer(layerId);
-        }
-});
-
-});
-
-
-
-/*
-texts.forEach( el =>  {
-    el.style.cursor = "pointer";
-
-    el.addEventListener("mouseover",function(e){
-      console.log(e.target.dataset.layerId);
-      let layerId = e.target.parentElement.dataset.layerId;
-
-      let rect = document.querySelector(`rect[data-layer-id = ${layerId}]`);
-      rect.style.fill = "orange";
-
-    });
-
-
-
-
-    el.addEventListener("click",function(e){
-        gridContainer.innerHTML = "";
-        titelFilter.innerHTML = "";
-        console.log("text: layer ->"+ el.dataset.layerId);
-        console.log(e.target);
-        let textNode = e.target.parentElement;
-        console.log(textNode);
-        let layerIdString = textNode.dataset.layerId;
-        let layerId = parseInt(layerIdString);
-        if(json[layerId].filters != undefined){ // condition for RELU layers
-            drawGridContainer(layerId);
-            }
-
-    });
-
-});
-*/
-};// end of get Json for swiper
-
-//test(json_concat);
-
-
-
-
 /* drawGridContainer draws the grid of squares (each unit of the chosed layer).
 each unit has a data-layer-ID and data-filter-Id attribute*/
+let clickNumber = 0;
 function drawGridContainer(layerId){
+  let isundef = jsonData[layerId];
+  if( isundef == undefined || isundef == null ){ 
+    console.log("je suis pas Pret...");
+  return;}
+  else{
   //titelFilter.innerHTML ="choose your filter";
+
   console.log(jsonData[layerId]);
   let filters = jsonData[layerId].filters;
   let filterNumber = filters.length;
@@ -169,13 +143,19 @@ function drawGridContainer(layerId){
   gridItem.classList.add("griditem");
   gridItem.setAttribute("data-layer-id",`${layerId}`);
   gridItem.setAttribute("data-filter-id",`${filter.id}`);
+  /*gridItem.setAttribute("clickNumber", clickNumber ); // to prevent double click...*/
+
+
   gridItem.innerHTML = `<span class="unitNumber" data-layer-id = "${layerId}" data-filter-id = "${filter.id}" >unit ${filter.id}</span>`;
   gridItem.style.backgroundImage = `url(.${filter.filter_viz})`; // met les filter_VIZ !
   gridContainer.appendChild(gridItem);
   }
   i += 1;
   });
-  }
+
+  }// end of else
+  }// end of function
+
 
   /*modalAppearance creates the popup by using the fuction called "createModal" and then scale the popUp from 0 to 1
   it is used as a callback fuction for the ONCLICK EVENT*/
@@ -183,13 +163,16 @@ function drawGridContainer(layerId){
     let layerId = parseInt(e.target.dataset.layerId);
     let filterId = parseInt(e.target.dataset.filterId);
     if((filterId == undefined || isNaN(filterId)) || (layerId == undefined || isNaN(layerId))){
-      console.log("apuie sur un carré connard, pas entre deux...");
+      console.log("apuie sur un carré, pas entre deux...");
       return;
     } else{
+      clickNumber += 1;
+      if(clickNumber <= 1){
        console.log(layerId,filterId);
        createModal(layerId,filterId);
        modalContainer.classList.add("active"); //scale from 0 to 1
        overlay.classList.add("active");
+      }
     }
   }
 // ONCLICK EVENT
@@ -336,7 +319,7 @@ for(el of filter.max_imgs_crop){
     //actmax_img-description -> mentha
     //actmax_img
     let im = document.createElement("img");
-       im.src = filter.filter_viz;
+       im.src = "."+filter.filter_viz;
        actmaxImDiv.appendChild(im);
  /* for Yann mentha later...
    avg_imgs-description
@@ -363,6 +346,7 @@ closeX.addEventListener("click",function(){
  });
 
 function eraseModal(){
+  clickNumber = 0;
   modalContainer.setAttribute("data-layer-id","");
   modalContainer.setAttribute("data-filter-id","");
 
