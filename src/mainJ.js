@@ -172,6 +172,8 @@ function drawGridContainer(layerId){
        createModal(layerId,filterId);
        modalContainer.classList.add("active"); //scale from 0 to 1
        overlay.classList.add("active");
+       setTimeout(function(){ document.querySelector(".defaultButton").click(); }, 400); // so that the first histogram can be seen :)))
+
       }
     }
   }
@@ -195,7 +197,8 @@ function createModal(layerId,filterId){
   // favCatHistogram -> dessiner histogram !!! :))) DELAY
   console.log(document.body.clientWidth);
   let windowWidth = document.body.clientWidth;
-  drawHistos("favCatHistogram",filter.histo_counts_avg,windowWidth*0.6, 1000,1000);
+  let windowHeight = document.body.clientHeight;
+  drawHistos("favCatHistogram",filter.histo_counts_avg,windowWidth*0.6*0.8, 1000,1000);
 
 
   // displayTitel avg_imgs
@@ -229,13 +232,14 @@ function createModal(layerId,filterId){
     }
   //avg_imgs_histo-description -> mentha
   //favHistogram -> dessiner Histogram !!! .))) DELAY
-  drawHistos("favHistogram",filter.avg_spikes,windowWidth*0.6,1000,1000);
+  //0.6 -> 60% of the windowsize . it is the modalWith !
+  drawHistos("favHistogram",filter.avg_spikes,windowWidth*0.6*0.8,1000,1000);
 
   /**displayContent max_imgs-display**/
   //histo_counts_max-description -> mentha
   //maxCatHistogram à dessiner !!! :))) DEALY
   //draw the histo with the 10 categ max
-  drawHistos("maxCatHistogram",filter.histo_counts_max,windowWidth*0.6,1000, 1000);
+  drawHistos("maxCatHistogram",filter.histo_counts_max,windowWidth*0.6*0.8,1000, 1000);
 
 
     /// addition of an eventListener for resizing the graphs
@@ -261,9 +265,7 @@ let icrop = 0;
 for(el of filter.max_imgs_crop){
    let im = document.createElement("img");
    im.src = el;
-   im.setAttribute("width","200");
-   im.setAttribute("height","200");
-
+  
    if(icrop < 4){
     maxCropDivFirst.appendChild(im);
     }else{
@@ -314,7 +316,7 @@ for(el of filter.max_imgs_crop){
 
     //max_imgs_histo-description -> mentha
     //maxHistogram a dessiner !!! :))) DELAY
-    drawHistos("maxHistogram",filter.max_spikes, windowWidth*0.6,1000,1000);
+    drawHistos("maxHistogram",filter.max_spikes, windowWidth*0.6*0.8,1000,1000);
 
 
     /**displayContent actmax_img-display**/
@@ -405,17 +407,18 @@ function drawHistos(CanvasClassName,ArraySpikesOrCategObj,svgWidth = 500, durati
   //htmlCanvas.innerHTML ="";
   // create a svg, give a class name to the svg element and give dimensions
   let canvas = d3.select("."+CanvasClassName);
+  let svgHeight = 400;
   let svg = canvas.append("svg")
           .attr("width",svgWidth)
-          .attr("height",500)
+          .attr("height",svgHeight)
           .attr("class", CanvasClassName+"Svg");
 
   let htmlSvg = document.querySelector("."+CanvasClassName+"Svg");
 
   //let svgWidth = htmlSvg.getBoundingClientRect().width;
   //if(svgWidth == 0){ svgWidth = 900;}
-  let svgHeight = 500;
-  let margin = { left: 100, right:80, top:80,bottom:120};
+  
+  let margin = { left: 115, right:20, top:20,bottom:150};
   let barsGroupWidth = svgWidth-margin.left-margin.right; //**
   let barsGroupHeight = svgHeight-margin.top-margin.bottom;
   let barsGroup = svg.append("g")//
@@ -473,10 +476,10 @@ function drawHistos(CanvasClassName,ArraySpikesOrCategObj,svgWidth = 500, durati
     maxCatHistogram.innerHTML ="";
     maxHistogram.innerHTML ="";
 
-      drawHistos("favCatHistogram",filter.histo_counts_avg,windowWidth*0.6, 0,0);
-      drawHistos("favHistogram",filter.avg_spikes,windowWidth*0.6,0,0);
-      drawHistos("maxCatHistogram",filter.histo_counts_max,windowWidth*0.6,0,0);
-      drawHistos("maxHistogram",filter.max_spikes, windowWidth*0.6,0,0);
+      drawHistos("favCatHistogram",filter.histo_counts_avg,windowWidth*0.6*0.8, 0,0);
+      drawHistos("favHistogram",filter.avg_spikes,windowWidth*0.6*0.8,0,0);
+      drawHistos("maxCatHistogram",filter.histo_counts_max,windowWidth*0.6*0.8,0,0);
+      drawHistos("maxHistogram",filter.max_spikes, windowWidth*0.6*0.8,0,0);
 
 
     }
