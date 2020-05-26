@@ -82,7 +82,7 @@ function outHover(el){
 
     // ensuite le text clické (le rectangle correspondant)ce met actif et rouge
     let layerId = parseInt(el.dataset.layerId);
-    $(`*[data-layer-id = ${layerId}]`)[0].style.fill = "red";
+    $(`*[data-layer-id = ${layerId}]`)[0].style.fill = "orange"; //red
     $(`*[data-layer-id = ${layerId}]`)[0].classList.add("actif");
 
     // on efface le gridContainer + titre et on redessine
@@ -127,7 +127,7 @@ function drawGridContainer(layerId){
     console.log("je suis pas Pret...");
   return;}
   else{
-  //titelFilter.innerHTML ="choose your filter";
+  titelFilter.innerHTML ="choose your filter";
 
   console.log(jsonData[layerId]);
   let filters = jsonData[layerId].filters;
@@ -345,6 +345,13 @@ closeX.addEventListener("click",function(){
   overlay.classList.remove("active");
  });
 
+ overlay.addEventListener("click",function(){
+  eraseModal();
+  modalContainer.classList.remove("active");
+  overlay.classList.remove("active");
+ });
+ 
+
 function eraseModal(){
   clickNumber = 0;
   modalContainer.setAttribute("data-layer-id","");
@@ -405,7 +412,7 @@ function drawHistos(CanvasClassName,ArraySpikesOrCategObj,svgWidth = 500, durati
   //let svgWidth = htmlSvg.getBoundingClientRect().width;
   //if(svgWidth == 0){ svgWidth = 900;}
   let svgHeight = 500;
-  let margin = { left: 50, right:20, top:20,bottom:120};
+  let margin = { left: 100, right:80, top:80,bottom:120};
   let barsGroupWidth = svgWidth-margin.left-margin.right; //**
   let barsGroupHeight = svgHeight-margin.top-margin.bottom;
   let barsGroup = svg.append("g")//

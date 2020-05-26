@@ -6,16 +6,17 @@
   color: #615f5f;
 }
 
-.titel-filter {
+h1.titel-filter {
   text-align: center;
   /*color: #ebebeb;*/
-  color: orangered;
+  color: rgb(238,76,44);
+  
 }
 
 .histo rect {
  /* fill: #ee4c2c; */
- fill: orangered;
- opacity: 0.9;
+ fill: rgb(238,76,44);
+ opacity: 1;
 }
 
 .histo text {
@@ -70,7 +71,8 @@ body{
   /*height: 100%;*/
   margin: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 12%);
+  grid-template-columns: repeat(auto-fill, 9%);
+  padding-right: 5%;
   grid-auto-rows: 1fr;
 }
 
@@ -106,10 +108,10 @@ body{
   cursor: pointer;
 }
 .unitNumber{
-  display: inline-block;
-  font-size: 1.4vw;
+	font-size: 0.9vw;
+  
+  
   border-bottom-right-radius: 5px;
-  padding: 2px;
   color: black;
   background-color: silver;
   opacity: 0.8;
@@ -126,13 +128,12 @@ body{
   border: solid #615f5f 1px;
   border-radius: 5px;
   z-index: 10; /*pour le dessiner sur tout le reste*/
-  background-color: #2e2d2e;
   width: 60%; /*width 500px*/
   height: 75%; /*max-width 80%*/
   /*background-color: rgba(255, 255, 255, 0.6); */
   backdrop-filter: blur(40px);
   background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(255,255,255,0.6); /* Black w/opacity/see-through */
+ background-color: rgba(255,255,255,0.1); /* Black w/opacity/see-through */ 
 }
 
 .modal-container.active{
@@ -188,18 +189,28 @@ margin-left: 3px;
 
   border-radius: 20px;
 }
+.modal-body::-webkit-scrollbar-thumb:hover{
+	 background: linear-gradient(45deg,rgb(245, 199, 191), rgb(238,76,44) );
+	/*background-color: rgba(97,95,95,1);*/
+   
+	 border-radius: 20px;
+   }
+   
 
-.modal-container p{
+.modal-container p.description{
   color: black;
   text-align: justify;
+  padding: 0 10%;
 }
 
-.displayTitel{
+h3.displayTitel{
   color: black;
   text-align: center;
 }
 
+
 .close-div{
+
   cursor: pointer;
   border: none;
   outline: none;
@@ -211,6 +222,9 @@ margin-left: 3px;
   right: 0px;
   margin-right: 3px;
 }
+.close-div:hover{
+	color: rgb(238,76,44);
+}
 
 .overlay{
  position: fixed;
@@ -220,7 +234,7 @@ margin-left: 3px;
  left: 0;
  right: 0;
  bottom: 0;
- /*background-color: rgb(249, 248, 253,0.6);*/
+ background-color: rgb(249, 248, 253,0.6);
  transition: 1000ms ease-in-out;
  pointer-events: none;  /* pour l'opacité !*/
 }
@@ -228,6 +242,8 @@ margin-left: 3px;
   opacity: 1;
   pointer-events: all;
 }
+
+
 /*/////CSS pour le modal-body composé du fixed-sidebar et du content-wrapper ///////*/
 
 
@@ -270,17 +286,32 @@ margin-left: 3px;
   justify-content: space-around;
 
 }
+.cropImages img{
+	width: 200px;
+	height: 200px;
+}
 
 /* ################################# 2 COLS ################################# */
 .firstColumn {
+	margin-top: 3.5%;
+  height: 100%;
+  display: flex;
+  align-items: center;
   float: left;
   width: 40%;
-  margin-top: 20%;
 
+  
+
+}
+svg.bezier{
+	margin: 0 auto;
 }
 .secondColumn {
   float: left;
   width: 60%;
+  height: 100%;
+  display: flex;
+  align-items: center;
 
 }
 
@@ -307,13 +338,13 @@ margin-left: 3px;
 /* ############################# GIANNI ################################### */
 /* ######################################################################## */
 /* ######################################################################## */
-
-* {
+/*
+* { /* pour moi c'est mortel ...
   margin: 0;
   padding: 0;
-  box-sizing:border-box;
+  box-sizing:border-box; 
 }
-
+*/
 html, body {
 	width: 100%;
 	padding: 0;
@@ -330,9 +361,9 @@ body {
 }
 
 
-h1 {
+h1 { /* pour moi c'est mortel ... faut rajouter une classe gianni a chaque h1 et mettre h1.gianni*/
   font-size: 2rem;
-  height: 50vh;
+  /*height: 50vh;*/
   display: flex;
   justify-content: center;
   align-items: center;
