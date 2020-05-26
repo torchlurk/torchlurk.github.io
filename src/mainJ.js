@@ -261,6 +261,9 @@ let icrop = 0;
 for(el of filter.max_imgs_crop){
    let im = document.createElement("img");
    im.src = el;
+   im.setAttribute("width","200");
+   im.setAttribute("height","200");
+
    if(icrop < 4){
     maxCropDivFirst.appendChild(im);
     }else{

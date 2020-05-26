@@ -201,11 +201,13 @@ margin-left: 3px;
   color: black;
   text-align: justify;
   padding: 0 10%;
+  margin-bottom: 6%;
 }
 
 h3.displayTitel{
   color: black;
   text-align: center;
+  margin-top: 10%;
 }
 
 
@@ -281,15 +283,22 @@ h3.displayTitel{
 
 */
 
+
 .images {
   display: flex;
   justify-content: space-around;
+  
 
 }
-.cropImages img{
-	width: 200px;
-	height: 200px;
+
+
+.images img{
+	border-radius: 5vh;
+	padding: 2%;
+	width: 18%;
+	height: auto;
 }
+
 
 /* ################################# 2 COLS ################################# */
 .firstColumn {
