@@ -254,9 +254,10 @@ h3.displayTitel{
   top: 0px;
   right: 0px;
   margin-right: 3px;
+  color: orangered;
 }
 .close-div:hover{
-	color: rgb(238,76,44);
+	color: black;
 }
 
 .overlay{
@@ -350,6 +351,9 @@ h3.displayTitel{
 	margin-top: 3.5%;
   height: 100%;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  
   align-items: center;
   float: left;
   width: 40%;
@@ -357,6 +361,10 @@ h3.displayTitel{
   
 
 }
+.exploreTitel{
+width: 100%;
+}
+
 svg.bezier{
 	margin: 0 auto;
 	width: 50%;

@@ -56,7 +56,7 @@ function onHover(el){
   layerId = el.dataset.layerId; 
   // choppe le rectangle correspondant!!
   let correspRect = $(`*[data-layer-id = ${layerId}]`)[0];
-  correspRect.style.fill="orange"; 
+  correspRect.style.fill="rgba(238,76,44,0.1)"; 
 }
 
 /* In the HTML all <text> corresponding to a conv_ layer have the attribute ONMOUSEOUT*/
@@ -82,7 +82,7 @@ function outHover(el){
 
     // ensuite le text clické (le rectangle correspondant)ce met actif et rouge
     let layerId = parseInt(el.dataset.layerId);
-    $(`*[data-layer-id = ${layerId}]`)[0].style.fill = "orange"; //red
+    $(`*[data-layer-id = ${layerId}]`)[0].style.fill = "rgba(238,76,44,0.1)"; //red
     $(`*[data-layer-id = ${layerId}]`)[0].classList.add("actif");
 
     // on efface le gridContainer + titre et on redessine
@@ -418,7 +418,7 @@ function drawHistos(CanvasClassName,ArraySpikesOrCategObj,svgWidth = 500, durati
   //let svgWidth = htmlSvg.getBoundingClientRect().width;
   //if(svgWidth == 0){ svgWidth = 900;}
   
-  let margin = { left: 115, right:20, top:20,bottom:150};
+  let margin = { left: 115, right:20, top:20,bottom:170};
   let barsGroupWidth = svgWidth-margin.left-margin.right; //**
   let barsGroupHeight = svgHeight-margin.top-margin.bottom;
   let barsGroup = svg.append("g")//
