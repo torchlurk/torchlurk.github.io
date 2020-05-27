@@ -1007,34 +1007,42 @@
 
                   <div class="julien modal-container">
                       <div class="julien modal-header">
-                                  <a class="defaultButton" href="#avg_imgs-display">avg_imgs-display</a>
-                                  <a href="#max_imgs-display">max_imgs-display</a>
-                                  <a href="#actmax_img-display">actmax_img-display</a>
+                              <!--   chage a to button --> <!--
+                                  <a class="defaultButton AvgDisplay" href="#avg_imgs-display">avg_imgs-display</a>
+                                  <a class=" MaxDisplay" href="#max_imgs-display">max_imgs-display</a>
+                                  <a class=" ActDisplay" href="#actmax_img-display">actmax_img-display</a>
+                                  <div class="julien close-div" style="padding-right:0;">&times;</div> -->
+                               <!--   chage a to button -->
+                                  <button class=" AvgDisplay" onclick="myFunction('avg_imgs-display')">avg_imgs-display</button>
+                                  <button class=" defaultButton ActDisplay" onclick="myFunction('actmax_img-display')">actmax_img-display</button>
+
+                                  <button class=" MaxDisplay" onclick="myFunction('max_imgs-display')">max_imgs-display</button>
                                   <div class="julien close-div" style="padding-right:0;">&times;</div>
+
                       </div>
                       <!-- la popu up doit être codée dans le modal-body
                       see w3school chaque bouton et relié à un displayContent-->
                       <div class="julien modal-body">
                           <div class="julien content-wrapper">
-                              <div class="julien displayContent" id = "avg_imgs-display" >
+                              <div class="julien displayContent hidden" id = "avg_imgs-display" >
                                   <h3 class="julien displayTitel"> histo_counts_avg </h3>
                                   <p class="julien histo_counts_avg-description description"></p>
                                   <div class="julien favCatHistogram histo"></div>
 
-                                  <h3 class="julien displayTitel"> avg_imgs </h3>
+                                  <h3 class="julien displayTitel"> avg_imgs <span class ="spanButtonChangeAvgToGrad">AvgToGrad</span><span class ="spanButtonChangeGradToAvg">GradToAvg</span></h3>
                                   <p class="julien avg_imgs-description description"></p>
                                   <div class="blockImages">
                                     <div class="julien avg_imgs-firstRow images"></div>
                                     <div class="julien avg_imgs-secondRow images"></div>
                                  </div>
-
+                              <!--    no more useful --> <!--
                                   <h3 class="julien displayTitel"> avg_imgs_grad </h3>
                                   <p class="julien avg_imgs_grad-description description"></p>
                                   <div class="blockImages">
                                     <div class="julien avg_imgs_grad-firstRow images"></div>
                                     <div class="julien avg_imgs_grad-secondRow images"></div>
-                                 </div>
-                                  
+                                 </div> -->
+                               <!--    no more useful -->
 
                                   <h3 class="julien displayTitel"> favHisto </h3>
                                   <p class="julien avg_imgs_histo-description description">
@@ -1043,19 +1051,26 @@
 
                               </div>
 
-                              <div class="julien displayContent " id ="max_imgs-display" >
+                              <div class="julien displayContent hidden " id ="max_imgs-display" >
                                   <h3 class="julien displayTitel"> histo_counts_max </h3>
                                   <p class="julien histo_counts_max-description description"></p>
                                   <div class="julien maxCatHistogram histo"></div>
 
-                                  <h3 class="julien displayTitel"> max_imgs </h3>
+                                  <h3 class="julien displayTitel"> max_imgs <span class ="spanButtonChangeMaxToGrad">MaxToGrad</span><span class ="spanButtonChangeGradToMax">GradToMax</span></h3>
                                   <p class="julien max_imgs-description description"></p>
                                   <div class="blockImages">
                                     <div class="julien max_imgs-firstRow images"></div>
                                     <div class="julien max_imgs-secondRow images"></div>
                                  </div>
-                                  
-                                 
+                                  <!--    no more useful --> 
+                                  <!--
+                                 <h3 class="julien displayTitel"> max_imgs_grad </h3>
+                                 <p class="julien max_imgs_grad-description description"></p>
+                                 <div class="blockImages">
+                                   <div class="julien max_imgs_grad-firstRow images"></div>
+                                   <div class="julien max_imgs_grad-secondRow images"></div> 
+                                </div> -->
+                                  <!--    no more useful -->
 
 
                                   <h3 class="julien displayTitel"> max_imgs_crop</h3>
@@ -1067,12 +1082,7 @@
                                  </div>
                                   
 
-                                  <h3 class="julien displayTitel"> max_imgs_grad </h3>
-                                  <p class="julien max_imgs_grad-description description"></p>
-                                  <div class="blockImages">
-                                    <div class="julien max_imgs_grad-firstRow images"></div>
-                                    <div class="julien max_imgs_grad-secondRow images"></div> 
-                                 </div>
+                                 
                                   
                                   
 
@@ -1091,7 +1101,7 @@
                                   <div class="julien maxHistogram histo"></div>
                               </div>
 
-                              <div class="julien displayContent " id ="actmax_img-display" >
+                              <div class="julien displayContent hidden " id ="actmax_img-display" >
                                   <h3 class="julien displayTitel"> actmax_img </h3>
                                   <p class="julien actmax_img-description description">
                                   </p>

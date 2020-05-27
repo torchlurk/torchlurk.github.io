@@ -172,7 +172,7 @@ function drawGridContainer(layerId){
        createModal(layerId,filterId);
        modalContainer.classList.add("active"); //scale from 0 to 1
        overlay.classList.add("active");
-       setTimeout(function(){ document.querySelector(".defaultButton").click(); }, 400); // so that the first histogram can be seen :)))
+      /* setTimeout(function(){ document.querySelector(".defaultButton").click(); }, 400); */ // so that the first histogram can be seen :)))
 
       }
     }
@@ -190,6 +190,10 @@ function createModal(layerId,filterId){
   let filter = jsonData[layerId].filters[filterId];
   modalContainer.setAttribute("data-layer-id",`${layerId}`);
   modalContainer.setAttribute("data-filter-id",`${filterId}`);
+
+/**************** AVG_IMGS_DISPLAY ***************************** */
+/**************** AVG_IMGS_DISPLAY ***************************** */
+
 
   /**display content avg_imgs-display**/
   // displayTitel = histo_counts_avg
@@ -216,24 +220,60 @@ function createModal(layerId,filterId){
     }
     ifav += 1;
  }
-  // displayTitel avg_imgs_grad
-  //avg_imgs_grad-description -> Mentha
-  //avg_imgs_grad
-  let igrad = 0;
+
+
+/**************************************/
+ let spanButtonChangeAvgToGrad = document.querySelector(".spanButtonChangeAvgToGrad");
+ spanButtonChangeAvgToGrad.addEventListener("click", function(e){
+   favImgsDivFirst.innerHTML ="";
+   favImgsDivSecond.innerHTML ="";
+
+   let igrad = 0;
   for(el of filter.avg_imgs_grad){
       let im = document.createElement("img");
       im.src = el;
       if(igrad < 4){
-        gradPathAvgDivFirst.appendChild(im);
+        favImgsDivFirst.appendChild(im);
         }else{
-        gradPathAvgDivSecond.appendChild(im);
+        favImgsDivSecond.appendChild(im);
         }
         igrad += 1;
     }
+});
+
+let spanButtonChangeGradToAvg = document.querySelector(".spanButtonChangeGradToAvg");
+ spanButtonChangeGradToAvg.addEventListener("click", function(e){
+   favImgsDivFirst.innerHTML ="";
+   favImgsDivSecond.innerHTML ="";
+
+   let ifav = 0;
+   for(el of filter.avg_imgs){
+ 
+     let im = document.createElement("img");
+     im.src = el;
+     if(ifav < 4){
+     favImgsDivFirst.appendChild(im);
+     }else{
+     favImgsDivSecond.appendChild(im);
+     }
+     ifav += 1;
+  }
+});
+/********************************************** */
+
+
+  // displayTitel avg_imgs_grad
+  //avg_imgs_grad-description -> Mentha
+  //avg_imgs_grad
+  
   //avg_imgs_histo-description -> mentha
   //favHistogram -> dessiner Histogram !!! .))) DELAY
   //0.6 -> 60% of the windowsize . it is the modalWith !
   drawHistos("favHistogram",filter.avg_spikes,windowWidth*0.6*0.8,1000,1000);
+
+
+/**************** MAX_IMGS_DISPLAY ***************************** */
+/**************** MAX_IMGS_DISPLAY ***************************** */
 
   /**displayContent max_imgs-display**/
   //histo_counts_max-description -> mentha
@@ -246,6 +286,8 @@ function createModal(layerId,filterId){
   //max_imgs titel
   //max_imgs-description -> Mentha
   //max_imgs
+
+  /***************************** */
   let imax = 0;
     for(el of filter.max_imgs){
        let im = document.createElement("img");
@@ -258,6 +300,51 @@ function createModal(layerId,filterId){
         imax += 1;
 
     }
+   
+  let spanButtonChangeMaxToGrad = document.querySelector(".spanButtonChangeMaxToGrad");
+  spanButtonChangeMaxToGrad.addEventListener("click", function(e){
+    maxImgsDivFirst.innerHTML = "";
+    maxImgsDivSecond.innerHTML = "";
+
+    
+    let imaxgrad = 0;
+    for(el of filter.max_imgs_grad){
+       let im = document.createElement("img");
+       im.src = el;
+       if(imaxgrad < 4){
+        maxImgsDivFirst.appendChild(im);
+        }else{
+        maxImgsDivSecond.appendChild(im);
+        }
+        imaxgrad += 1;
+
+    }
+});
+
+
+
+let spanButtonChangeGradToMax = document.querySelector(".spanButtonChangeGradToMax");
+  spanButtonChangeGradToMax.addEventListener("click", function(e){
+    maxImgsDivFirst.innerHTML = "";
+    maxImgsDivSecond.innerHTML = "";
+
+
+    let imax = 0;
+    for(el of filter.max_imgs){
+       let im = document.createElement("img");
+       im.src = el;
+       if(imax < 4){
+        maxImgsDivFirst.appendChild(im);
+        }else{
+        maxImgsDivSecond.appendChild(im);
+        }
+        imax += 1;
+
+    }
+    
+
+});
+
 
 // maxCropDiv
 
@@ -279,19 +366,7 @@ for(el of filter.max_imgs_crop){
   //max_imgs_grad titel
   //max_imgs_grad-description -> mentha
   //max_imgs_grad
-  let imaxgrad = 0;
-    for(el of filter.max_imgs_grad){
-       let im = document.createElement("img");
-       im.src = el;
-       if(imaxgrad < 4){
-        gradPathMaxDivFirst.appendChild(im);
-        }else{
-        gradPathMaxDivSecond.appendChild(im);
-        }
-        imaxgrad += 1;
-
-    }
-
+  
 
   // crop of maxGrad
 
@@ -308,16 +383,15 @@ for(el of filter.max_imgs_crop){
 
   }
 
+/************************************ */
 
-
-
-
-
-
-    //max_imgs_histo-description -> mentha
+//max_imgs_histo-description -> mentha
     //maxHistogram a dessiner !!! :))) DELAY
     drawHistos("maxHistogram",filter.max_spikes, windowWidth*0.6*0.8,1000,1000);
 
+
+/**************** ACTMAX_IMG_DISPLAY ***************************** */
+/**************** ACTMAX_IMG_DISPLAY ***************************** */
 
     /**displayContent actmax_img-display**/
     //actmax_img
@@ -339,7 +413,44 @@ for(el of filter.max_imgs_crop){
    */
 let descrs = document.querySelectorAll(".description")
 descrs.forEach( el => el.innerHTML = "lorem industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.");
+} // end of create modal !!
+
+
+
+/* function to DIsplay NONE */
+let listOfSections = [];
+listOfSections.push(document.querySelector("#avg_imgs-display"));
+listOfSections.push(document.querySelector("#max_imgs-display"));
+listOfSections.push(document.querySelector("#actmax_img-display"));
+
+function myFunction(targetId){
+  listOfSections.forEach(el => {
+    el.classList.add("hidden");
+  });
+  console.log(document.querySelector(`#${targetId}`));
+
+  let targetDisplay = document.querySelector(`#${targetId}`);
+  targetDisplay.classList.remove("hidden");
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* fonction qui supprime l'intérieur du popUp avant qu'il ne se ferme */
