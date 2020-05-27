@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Torchlurk </title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="../lib/swiper/swiper.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+</head>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<body>
+  <header id="header">
+    <h1>
+      <img src ="../images/torchlurk.png"/>
+      Torchlurk
+    </h1>
+    <nav id="nav">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="explore.html">Explore</a></li>
+        <li><a href="team.html">Team</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- <section id="main" class="wrapper"> -->
+  <main class="width-limited">
+    <div class="container">
+
+    <header class="section-title">
+      <h6>About</h6>
+      <!-- <p>Torchlurk </p> -->
+    </header>
+
+    <br /><br />
+
+    <h2>Introduction</h2>
+  	<p>
+      In the past recent years, Convolutional Neural Networks (CNN) have shown impressive capabilities in image recognition tasks even outperforming humans.
+      Despite undeniable success in all field of science, one can wonder why do these processing paradigms perform so well. Indeed, complexity increases along with the number of layers and internal computation lack of transparency for the user.
+  	</p>
+    <br></br>
+  	<p>
+      This project aims to develop a visualization tool to ease the interpretation of trained CNN and give insights to the user about what the network is actually learning. The name Torch- refers to the use of the PyTorch framework and -lurk to our willingness to unveil the intrinsic abstraction levels that are 'hidden' in these CNNs.
+  	</p>
+
+    <br></br>
+
+
+    <h2>Motivations</h2>
+    <p>
+      PyTorch is one of the most used deep learing framework and it just keeps getting more and more popular.
+      Nevertheless, we feel like it lacks practical visual tool associated to it to get insights about network structure.
+      We believe that is a great opportunity to develop such a tool as part of this course as it combines utility to visualization.
+    </p>
+
+    <br /><br />
+
+    <!-- START Histogram -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+
+    <div id="plot1" class="hist">
+
+        <script>
+        // set dimensions and margins of the graph
+        var margin = {top: 30, right: 30, bottom: 70, left: 60},
+            width = 460 - margin.left - margin.right,
+            height = 400 - margin.top - margin.bottom;
+
+        // svg: append to page body
+        var svg = d3.select("#plot1")
+          .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+            .attr("transform",
+                  "translate(" + margin.left + "," + margin.top + ")");
+
+        // x-axis
+
+        var x = d3.scaleBand()
+          .range([ 0, width ])
+          .padding(0.2);
+
+        var xAxis = svg.append("g")
+          .attr("transform", "translate(0," + height + ")")
+          .attr("class", "xAxisGroup")
+<<<<<<< HEAD
+          .style("text-anchor", "end");
+
+          
+=======
+          //.style("text-anchor", "end")
+
+
+          /*
+          var x = d3.scaleTime().range([0, width]);
+          var y = d3.scaleLinear().range([height, 0]);
+
+          // Add the X Axis
+          svg.append("g")
+              .attr("class", "axis")
+              .attr("transform", "translate(0," + height + ")")
+              .call(d3.axisBottom(x).ticks(10))
+              .selectAll("text")
+                .style("text-anchor", "end")
+                .attr("dx", "-.8em")
+                .attr("dy", ".15em")
+                .attr("transform", "rotate(-65)");
+          */
+>>>>>>> 172d94db495de18e24f18ed5c0607e6d22197494
+
+
+        // Initialize the Y axiscd Design
+        var y = d3.scaleLinear()
+          .range([ height, 0]);
+        var yAxis = svg.append("g")
+          .attr("class", "myYaxis")
+
+        // A function that create / update the plot for a given variable:
+        function update(selectedVar) {
+
+          // Parse the Data
+          d3.csv("../data/output.csv", function(data) {
+            console.log(data)
+
+            // X axis
+            x.domain(data.map(function(d) { return d.group; }))
+           let xAxisGroup =  xAxis.transition().duration(1000).call(d3.axisBottom(x))
+
+           xAxisGroup.selectAll("text").attr("transform",`rotate(${-40})`)
+                              .attr("text-anchor", "end");
+          
+            
+
+            // Add Y axis
+            y.domain([0, d3.max(data, function(d) { return +d[selectedVar] }) ]);
+            yAxis.transition().duration(1000).call(d3.axisLeft(y));
+
+            // variable u: map data to existing bars
+            var u = svg.selectAll("rect")
+              .data(data)
+
+            // update bars
+            u
+              .enter()
+              .append("rect")
+              .merge(u)
+              .transition()
+              .duration(1000)
+                .attr("x", function(d) { return x(d.group); })
+                .attr("y", function(d) { return y(d[selectedVar]); })
+                .attr("width", x.bandwidth())
+                .attr("height", function(d) { return height - y(d[selectedVar]); })
+                .attr("fill", "#ee4c2c") //"#69b3a2"
+          })
+
+        }
+
+        // center SVG
+        svgElement = document.getElementsByTagName("svg")[0];
+
+        svgElement.style.position = "relative";
+        svgElement.style.top = "50%";
+        svgElement.style.left = "50%";
+        svgElement.style.transform = "translate(-55%, -5%)";
+
+        // Initialize plot
+        update('var1')
+
+        </script>
+
+    </div>
+
+
+    <div id="selectors">
+      <div class="container selectors">
+
+        <button class="btn1" onclick="update('var1')">Publications</button>
+        <button class="btn2" onclick="update('var2')">Contributors</button>
+
+      </div>
+    </div>
+
+    <!-- END Histogram -->
+
+    <br /><br />
+
+    <h2>Related work</h2>
+    <p>
+      ImageNet is as database gathering a large number of images (several millions annotated images)
+      representing thousands of categories. It aims to provide scientists with as many images as possible
+      to meet the growing needs for additional data (the more the best).
+    </p>
+    <br />
+    <p>
+      Since the ImageNet project was launched in 2010, many researches have been carried out on it,
+      especially in the field of computer vision and deep learning involving the use of neural networks (NN).
+      Due to their increasing success, several works focus on in-depth performance understanding of these NN.
+    </p>
+    <br />
+    <p>
+      A good way to analyse networks and in particular CNN, is by visualizing them (for e.g. layers or filters).
+      In their Visualizing and Understanding Convolutional Networks paper, Matthew D. Zeiler and Rob Fergus
+      focus on understanding why CNN perform so well. To do so, they propose a visualization technique that
+      reveals the input stimuli exciting each feature map (for each layer). Targeting the same goal, Yosinski
+      et al propose 2 tools: one to visualize activations for each layer and a second to visualize features at each layer.
+      For the backend of our project, we used their toolbox (available on the GitHub repository cited below) as we are
+      interested in those information to visualize the networks internal states.
+    </p>
+
+    <br /><br />
+
+    <h2>Visualization and design</h2>
+  	<p>
+      For the website, we wanted a
+  	</p>
+
+    <br /><br />
+
+    <h2>Perspectives</h2>
+  	<p>
+      Compute more models if we have more computational power.
+  	</p>
+
+
+    <br /><br />
+
+    <h2>Literature</h2>
+  	<p>
+      blablabla
+  	</p>
+
+    </div>
+  </main>
+
+
+  <br /> <br />
+  <br /> <br />
+  <br /> <br />
+
+
+
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="container">
+      <ul class="icons">
+        <li><a href="https://github.com/giustogianni" class="icon fa-github"></a></li>
+      </ul>
+      <ul class="copyright">
+        <li>Yann Mentha, Julien Berger, Gianni Giusto</li>
+      </ul>
+    </div>
+  </footer>
+
+
+
+  </body>
+  </html>

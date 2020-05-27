@@ -177,6 +177,9 @@ function drawGridContainer(layerId){
        modalContainer.classList.add("active"); //scale from 0 to 1
        overlay.classList.add("active");
        document.querySelector(".defaultButton").click();
+       document.querySelector(".spanButtonChangeToAvg").click();
+       document.querySelector(".spanButtonChangeToMax").click();
+       document.querySelector(".spanButtonChangeToCrop").click();
       /* setTimeout(function(){ document.querySelector(".defaultButton").click(); }, 400); */ // so that the first histogram can be seen :)))
 
       }
@@ -228,8 +231,47 @@ function createModal(layerId,filterId){
 
 
 /**************************************/
- let spanButtonChangeAvgToGrad = document.querySelector(".spanButtonChangeAvgToGrad");
- spanButtonChangeAvgToGrad.addEventListener("click", function(e){
+ let spanButtonChangeToAvg = document.querySelector(".spanButtonChangeToAvg");
+ spanButtonChangeToAvg.addEventListener("click", function(e){
+   favImgsDivFirst.innerHTML ="";
+   favImgsDivSecond.innerHTML ="";
+
+   let ifav = 0;
+  for(el of filter.avg_imgs){
+
+    let im = document.createElement("img");
+    im.src = el;
+    if(ifav < 4){
+    favImgsDivFirst.appendChild(im);
+    }else{
+    favImgsDivSecond.appendChild(im);
+    }
+    ifav += 1;
+ }
+
+   /*let igrad = 0;
+  for(el of filter.avg_imgs_grad){
+      let im = document.createElement("img");
+      im.src = el;
+      if(igrad < 4){
+        favImgsDivFirst.appendChild(im);
+        }else{
+        favImgsDivSecond.appendChild(im);
+        }
+        igrad += 1;
+    }*/
+     /** code to keep the button active */
+     let spanButtonChangeToGrad = document.querySelector(".spanButtonChangeToGrad");
+
+     spanButtonChangeToGrad.classList.remove("active");
+     spanButtonChangeToAvg.classList.remove("active");
+     spanButtonChangeToAvg.classList.add("active");
+
+
+});
+
+let spanButtonChangeToGrad = document.querySelector(".spanButtonChangeToGrad");
+ spanButtonChangeToGrad.addEventListener("click", function(e){
    favImgsDivFirst.innerHTML ="";
    favImgsDivSecond.innerHTML ="";
 
@@ -244,25 +286,15 @@ function createModal(layerId,filterId){
         }
         igrad += 1;
     }
-});
 
-let spanButtonChangeGradToAvg = document.querySelector(".spanButtonChangeGradToAvg");
- spanButtonChangeGradToAvg.addEventListener("click", function(e){
-   favImgsDivFirst.innerHTML ="";
-   favImgsDivSecond.innerHTML ="";
 
-   let ifav = 0;
-   for(el of filter.avg_imgs){
- 
-     let im = document.createElement("img");
-     im.src = el;
-     if(ifav < 4){
-     favImgsDivFirst.appendChild(im);
-     }else{
-     favImgsDivSecond.appendChild(im);
-     }
-     ifav += 1;
-  }
+   /** code to keep the button active */
+   let spanButtonChangeToAvg = document.querySelector(".spanButtonChangeToAvg");
+
+   spanButtonChangeToGrad.classList.remove("active");
+   spanButtonChangeToAvg.classList.remove("active");
+   spanButtonChangeToGrad.classList.add("active");
+
 });
 /********************************************** */
 
@@ -293,6 +325,7 @@ let spanButtonChangeGradToAvg = document.querySelector(".spanButtonChangeGradToA
   //max_imgs
 
   /***************************** */
+  
   let imax = 0;
     for(el of filter.max_imgs){
        let im = document.createElement("img");
@@ -306,34 +339,10 @@ let spanButtonChangeGradToAvg = document.querySelector(".spanButtonChangeGradToA
 
     }
    
-  let spanButtonChangeMaxToGrad = document.querySelector(".spanButtonChangeMaxToGrad");
-  spanButtonChangeMaxToGrad.addEventListener("click", function(e){
+  let spanButtonChangeToMax = document.querySelector(".spanButtonChangeToMax");
+  spanButtonChangeToMax.addEventListener("click", function(e){
     maxImgsDivFirst.innerHTML = "";
     maxImgsDivSecond.innerHTML = "";
-
-    
-    let imaxgrad = 0;
-    for(el of filter.max_imgs_grad){
-       let im = document.createElement("img");
-       im.src = el;
-       if(imaxgrad < 4){
-        maxImgsDivFirst.appendChild(im);
-        }else{
-        maxImgsDivSecond.appendChild(im);
-        }
-        imaxgrad += 1;
-
-    }
-});
-
-
-
-let spanButtonChangeGradToMax = document.querySelector(".spanButtonChangeGradToMax");
-  spanButtonChangeGradToMax.addEventListener("click", function(e){
-    maxImgsDivFirst.innerHTML = "";
-    maxImgsDivSecond.innerHTML = "";
-
-
     let imax = 0;
     for(el of filter.max_imgs){
        let im = document.createElement("img");
@@ -344,14 +353,54 @@ let spanButtonChangeGradToMax = document.querySelector(".spanButtonChangeGradToM
         maxImgsDivSecond.appendChild(im);
         }
         imax += 1;
-
-    }
-    
-
+      }
+    /*let imaxgrad = 0;
+    for(el of filter.max_imgs_grad){
+       let im = document.createElement("img");
+       im.src = el;
+       if(imaxgrad < 4){
+        maxImgsDivFirst.appendChild(im);
+        }else{
+        maxImgsDivSecond.appendChild(im);
+        }
+        imaxgrad += 1;
+      }*/
+      /** code to keep the button active */
+      let spanButtonChangeToMaxGrad = document.querySelector(".spanButtonChangeToMaxGrad");
+      spanButtonChangeToMaxGrad.classList.remove("active");
+      spanButtonChangeToMax.classList.remove("active");
+      spanButtonChangeToMax.classList.add("active");
 });
 
 
-// maxCropDiv
+
+let spanButtonChangeToMaxGrad = document.querySelector(".spanButtonChangeToMaxGrad");
+  spanButtonChangeToMaxGrad.addEventListener("click", function(e){
+    maxImgsDivFirst.innerHTML = "";
+    maxImgsDivSecond.innerHTML = "";
+
+    let imaxgrad = 0;
+    for(el of filter.max_imgs_grad){
+       let im = document.createElement("img");
+       im.src = el;
+       if(imaxgrad < 4){
+        maxImgsDivFirst.appendChild(im);
+        }else{
+        maxImgsDivSecond.appendChild(im);
+        }
+        imaxgrad += 1;
+      }
+    
+            /** code to keep the button active */
+  let spanButtonChangeToMax = document.querySelector(".spanButtonChangeToMax");
+      spanButtonChangeToMax.classList.remove("active");
+      spanButtonChangeToMaxGrad.classList.remove("active");
+      spanButtonChangeToMaxGrad.classList.add("active");
+
+});
+
+/********************************************     */
+
 
 let icrop = 0;
 for(el of filter.max_imgs_crop){
@@ -373,6 +422,76 @@ for(el of filter.max_imgs_crop){
 }
 
 
+
+// maxCropDiv
+
+let spanButtonChangeToCrop = document.querySelector(".spanButtonChangeToCrop")
+spanButtonChangeToCrop.addEventListener("click", function(){
+  maxCropDivFirst.innerHTML = "";
+  maxCropDivSecond.innerHTML = "";
+
+  let icrop = 0;
+for(el of filter.max_imgs_crop){
+   let im = document.createElement("img");
+   im.src = el;
+   
+   /*im.width = "18%"
+   let width = im.clientWidth;
+   im.height = width;
+   console.log(width); */
+  
+   if(icrop < 4){
+    maxCropDivFirst.appendChild(im);
+    }else{
+    maxCropDivSecond.appendChild(im);
+    }
+    icrop += 1;
+
+}
+
+
+            /** code to keep the button active */
+            let spanButtonChangeToCroGrad = document.querySelector(".spanButtonChangeToCropGrad");
+            spanButtonChangeToCrop.classList.remove("active");
+            spanButtonChangeToCropGrad.classList.remove("active");
+            spanButtonChangeToCrop.classList.add("active");
+
+
+}); 
+
+
+let spanButtonChangeToCropGrad = document.querySelector(".spanButtonChangeToCropGrad")
+spanButtonChangeToCropGrad.addEventListener("click", function(){
+  maxCropDivFirst.innerHTML ="";
+  maxCropDivSecond.innerHTML = "";
+
+  let icropMaxGrad = 0;
+  for(el of filter.max_imgs_crop_grad){
+     let im = document.createElement("img");
+     im.src = el;
+     if(icropMaxGrad < 4){
+      maxCropDivFirst.appendChild(im);
+      }else{
+      maxCropDivSecond.appendChild(im);
+      }
+      icropMaxGrad += 1;
+
+  }
+  
+/** code to keep the button active */
+let spanButtonChangeToCrop = document.querySelector(".spanButtonChangeToCrop");
+spanButtonChangeToCrop.classList.remove("active");
+spanButtonChangeToCropGrad.classList.remove("active");
+spanButtonChangeToCropGrad.classList.add("active");
+
+
+
+
+
+});
+
+
+
   //max_imgs_grad titel
   //max_imgs_grad-description -> mentha
   //max_imgs_grad
@@ -380,18 +499,7 @@ for(el of filter.max_imgs_crop){
 
   // crop of maxGrad
 
-  let icropMaxGrad = 0;
-  for(el of filter.max_imgs_crop_grad){
-     let im = document.createElement("img");
-     im.src = el;
-     if(icropMaxGrad < 4){
-      maxGradCropDivFirst.appendChild(im);
-      }else{
-      maxGradCropDivSecond.appendChild(im);
-      }
-      icropMaxGrad += 1;
-
-  }
+ 
 
 /************************************ */
 

@@ -3,11 +3,55 @@ button{
 	border: none;
 }
 */
-.displayTitel span{
+
+/*********** buttons for AVGtoGRAD et Aussi MAXtoGRAD */
+.alignButtons{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.alignButtons h3{
+	margin: 0;
+}
+.alignButtons span{
+	padding: 0 2%;
 	cursor: pointer;
 	margin-left: 10px;
+	position: relative;
+	left: 16.5%;
+	/*width: 18%; */
+    height: 55%;
+    font-size: 1.1vw;
+    background-color: rgba(238,76,44,0.0);
+    color: rgba(238,76,44);
+    font-weight: bold;
+    border: 2px solid rgba(238, 76, 44, 0.6);
+    transition-duration: 0.4s;
 
 }
+.alignButtons  span:hover{
+	background-color: rgba(238,76,44,0.1); /*rgba(255,255,255,0.1);*/
+	color: rgba(238,76,44); /*rgba(255,255,255);*/
+
+}
+.alignButtons  span.droite{
+	cursor: pointer;
+	margin-left: 10px;
+	position: relative;
+	left: 27.5%
+}
+.alignButtons  span.gauche{
+	margin-left: 12%;
+
+}
+
+.alignButtons  span.active {
+	background-color: rgba(238,76,44,0.1); /*rgba(255,255,255,0.1);*/
+	border: 2px solid;
+	border-color: rgba(238, 76, 44, 0.6);
+}
+
+/*********************************************************************/
 .displayContent.hidden{
 	display: none;
 }
@@ -195,9 +239,6 @@ body{
 
 
 .modal-header button {
-
-
-
 	width: 18%;
     height: 55%;
     font-size: 1.1vw;
@@ -206,7 +247,6 @@ body{
     font-weight: bold;
     border: 2px solid rgba(238, 76, 44, 0.6);
     transition-duration: 0.4s;
-
 }
 .modal-header button:hover {
 	background-color: rgba(238,76,44,0.1); /*rgba(255,255,255,0.1);*/
@@ -222,8 +262,6 @@ button.popUp.active {
 	background-color: rgba(238,76,44,0.1); /*rgba(255,255,255,0.1);*/
 	border: 2px solid;
 	border-color: rgba(238, 76, 44, 0.6);
-
-
 }
 
 
@@ -328,6 +366,7 @@ h3.displayTitel{
 }
 
 .overlay{
+
  position: fixed;
  z-index: 10;
  opacity: 0;  /*au moment ou on lui donne une opacité il capte les mouses events a la place de ce qu'il y a desoous*/
@@ -340,6 +379,7 @@ h3.displayTitel{
  pointer-events: none;  /* pour l'opacité !*/
 }
 .overlay.active{
+	cursor: pointer;
   opacity: 10;
   pointer-events: all;
   background-color: rgba(0,0,0,0.4); 
