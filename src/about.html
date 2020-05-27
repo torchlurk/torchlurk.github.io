@@ -90,6 +90,9 @@
         var xAxis = svg.append("g")
           .attr("transform", "translate(0," + height + ")")
           .attr("class", "xAxisGroup")
+          .style("text-anchor", "end");
+
+          
 
 
         // Initialize the Y axiscd Design
@@ -107,7 +110,12 @@
 
             // X axis
             x.domain(data.map(function(d) { return d.group; }))
-            xAxis.transition().duration(1000).call(d3.axisBottom(x))
+           let xAxisGroup =  xAxis.transition().duration(1000).call(d3.axisBottom(x))
+
+           xAxisGroup.selectAll("text").attr("transform",`rotate(${-40})`)
+                              .attr("text-anchor", "end");
+          
+            
 
             // Add Y axis
             y.domain([0, d3.max(data, function(d) { return +d[selectedVar] }) ]);

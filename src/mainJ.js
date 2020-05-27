@@ -1,4 +1,7 @@
 
+
+
+
 /****  SELECTION OF "ALL" THE HTML ELEMENTS******/
 let titelFilter = document.querySelector(".titel-filter");
 
@@ -6,6 +9,7 @@ let gridContainer = document.querySelector(".grid-container");
 
 let closeX = document.querySelector(".close-div");
 let modalContainer = document.querySelector(".modal-container");
+let modalBody = document.querySelector(".modal-body");
 let contentWrapper = document.querySelector(".content-wrapper");
 
 let favImgsDivFirst = document.querySelector(".avg_imgs-firstRow");
@@ -172,6 +176,7 @@ function drawGridContainer(layerId){
        createModal(layerId,filterId);
        modalContainer.classList.add("active"); //scale from 0 to 1
        overlay.classList.add("active");
+       document.querySelector(".defaultButton").click();
       /* setTimeout(function(){ document.querySelector(".defaultButton").click(); }, 400); */ // so that the first histogram can be seen :)))
 
       }
@@ -352,6 +357,11 @@ let icrop = 0;
 for(el of filter.max_imgs_crop){
    let im = document.createElement("img");
    im.src = el;
+   
+   /*im.width = "18%"
+   let width = im.clientWidth;
+   im.height = width;
+   console.log(width); */
   
    if(icrop < 4){
     maxCropDivFirst.appendChild(im);
@@ -423,14 +433,22 @@ listOfSections.push(document.querySelector("#avg_imgs-display"));
 listOfSections.push(document.querySelector("#max_imgs-display"));
 listOfSections.push(document.querySelector("#actmax_img-display"));
 
-function myFunction(targetId){
+function myFunction(thisButton,targetId){
   listOfSections.forEach(el => {
     el.classList.add("hidden");
   });
   console.log(document.querySelector(`#${targetId}`));
-
+ /* thisButton.style.backgroudColor = "rgba(238,76,44,0.1)";
+  thisButton.style.border = "2px solid rgba(238, 76, 44, 0.6)";*/
+  let buttons = document.querySelectorAll("button.popUp");
+  buttons.forEach( el =>{
+    el.classList.remove("active");
+  });
+  thisButton.classList.add("active");
+ 
   let targetDisplay = document.querySelector(`#${targetId}`);
   targetDisplay.classList.remove("hidden");
+  modalBody.scrollTo(0,0);
 }
 
 
@@ -592,6 +610,6 @@ function drawHistos(CanvasClassName,ArraySpikesOrCategObj,svgWidth = 500, durati
       drawHistos("maxCatHistogram",filter.histo_counts_max,windowWidth*0.6*0.8,0,0);
       drawHistos("maxHistogram",filter.max_spikes, windowWidth*0.6*0.8,0,0);
 
-
+      console.log("resize");
     }
     });

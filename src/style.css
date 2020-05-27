@@ -413,6 +413,7 @@ main {
 }
 
 #buttons-header button {
+  border-radius: 15px;
   /*
   display: block;
 
@@ -436,6 +437,9 @@ main {
   transition-duration: 0.4s;
 }
 
+#buttons-header button:focus {
+  outline: none;
+}
 
 #buttons-header button:hover {
   background-color: rgba(238,76,44,0.1); /*rgba(255,255,255,0.1);*/
