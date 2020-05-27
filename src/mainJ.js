@@ -116,6 +116,7 @@ $.getJSON("../vgg16_imagenet_1.json", function(jsono) {
     jsonData = json_concat;
     console.log(jsonData)
     console.log("json charge");
+    document.querySelector(".gifTest").remove();
  
   ///////**** ALL THE JS CODE IS WITHIN THE GETJSON */
   
@@ -131,7 +132,7 @@ function drawGridContainer(layerId){
     console.log("je suis pas Pret...");
   return;}
   else{
-  titelFilter.innerHTML ="choose your filter";
+  titelFilter.innerHTML ="Choose your filter";
 
   console.log(jsonData[layerId]);
   let filters = jsonData[layerId].filters;
