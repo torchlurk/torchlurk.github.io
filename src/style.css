@@ -30,7 +30,7 @@ body {
 h1 {
   font-size: 2rem; /*80px*/
   height: 50vh;
-  display: flex;
+  /*display: flex;*/
   justify-content: center;
   align-items: center;
   font-family: 'Montserrat', sans-serif;
@@ -54,7 +54,7 @@ h3 {
 
 
 h6 {
-  font-size: 2.2rem; /*40px*/
+  font-size: 3rem; /*40px*/
   color: #000000; /*color: rgb(0, 44, 122);*/
   font-family: 'Montserrat', sans-serif;
 }
@@ -205,7 +205,7 @@ h6 {
 
 
 #header img {
- height: 1.5rem; /*30px*/
+ height: 2rem; /*30px*/
 }
 
 
@@ -284,12 +284,13 @@ h6 {
 
 #home h4 {
   font-size: 1.25rem; /*20px*/
+  padding-bottom: 10rem; /*HERE: distance to footer*/
 }
 
 
 #home img {
   max-width: 35rem; /*700px*/
-  padding-top: 12rem; /*15rem*/
+  padding-top: 10rem; /*15rem*/
   padding-bottom: 5rem;
 }
 
@@ -368,8 +369,8 @@ main {
 #buttons-header .btn-container {
   justify-content: space-between;
   display: flex;
-  padding-top: 10rem;
-  padding-bottom: 10rem;
+  padding-top: 8rem; /*10rem*/
+  padding-bottom: 8rem; /*10rem*/
 }
 
 #buttons-header .btn {
@@ -377,8 +378,8 @@ main {
   /*max-width: 180px;
   min-width: 110px;*/
   /*margin-left: 300px;*/
-  width: 1000px; /*HERE: space (horizontal occupied by the 3 buttons)*/
-  margin-top: 6px;
+  width: 90rem; /*1000px*/ /*HERE: space (horizontal occupied by the 3 buttons)*/
+  margin-top: 2rem; /*6px*/
 }
 
 #buttons-header .btn .select {
@@ -388,7 +389,7 @@ main {
 
 .btn {
   /*position: absolute;*/ /*NOPE*/
-  max-width: 55rem;
+  max-width: 55rem; /*55rem*/
 	margin-left: auto;
 	margin-right: auto;
   top: 100%;
@@ -396,17 +397,18 @@ main {
   /*transform: translate(-50%, -50%);*/
 }
 
+/*.btn select useless*/
 .btn select {
   background: #fff;
   color: #000000;
-  padding: 10px;
-  width: 200px;
-  height: 50px;
+  padding: 10px; /*10px*/
+  width: 200px; /*200px*/
+  height: 50px; /*50px*/
   border-top: none;
   border-right: none;
   border-left: none;
-  border-bottom-width: 2px;
-  font-size: 20px;
+  border-bottom-width: 2px; /*2'px*/
+  font-size: 20px; /*20px*/
   /*box-shadow: 0 5px 25px rgba(0,0,0,.5);
   -webkit-appearance: button;
   outline: none;*/
@@ -422,14 +424,14 @@ main {
 	padding: 0.75rem;
   */
 
-  width: 200px;
-  height: 100px;
+  width: 12rem; /*200px*/
+  height: 6rem; /*100px*/
 
   background-color: rgba(238,76,44,0.0); /*rgba(0,0,0,0.1);*/
   color: rgba(238,76,44); /*white;*/
 
   font-weight: bold;
-	font-size: 1.5rem;
+	font-size: 1.3rem; /*1.5rem*/
 
   border: 2px solid rgba(238, 76, 44, 0.6); /*rgba(255,255,255,0.1);*/
 
@@ -482,7 +484,7 @@ p {
   margin: 0 auto;*/
 }
 
- /* BUTTON plot 1 */
+/* ############################# BUTTON PLOT 1 ############################## */
  #selectors button {
  	display: block;
 
@@ -511,13 +513,56 @@ p {
    cursor:pointer;
  }
 
+ /* SCROLL BUTTON - SELECTOR */
+ #selectors .container {
+   justify-content: flex-end;
+   display: flex;
+   padding-left: 7rem;
+   padding-right: 7rem;
+ }
+
+ #selectors .selector {
+   flex-grow: 1;
+   max-width: 180px; /*180px*/
+   min-width: 110px; /*110px*/
+   margin-left: 10rem; /*30px*/
+   margin-top: 6px; /*6px*/
+ }
+
+ #selectors .selector .select {
+     position: relative;
+ }
+
+/*
+ .selector {
+   max-width: 55rem;
+   margin-left: auto;
+   margin-right: auto;
+   top: 100%;
+   left: 100%;
+ }*/
+
+ .selector select {
+   background: #fff;
+   color: #000000;
+   padding: 10px;
+   width: 200px;
+   height: 50px;
+   border-top: none;
+   border-right: none;
+   border-left: none;
+   border-bottom-width: 2px;
+   font-size: 20px;
+   /*box-shadow: 0 5px 25px rgba(0,0,0,.5);
+   -webkit-appearance: button;
+   outline: none;*/
+ }
+
 
 /* ############################## TEAM SECTION ############################## */
 .container p {
   color: #000000;
 }
-
-
 /* ############################## IMAGES TEAM ############################### */
 .image {
   border-radius: 4px;
@@ -673,12 +718,13 @@ ul.icons li {
   text-decoration: none;
   zoom: 1;
   margin: auto;
+  padding-bottom: 5rem;
 }
 
 .model_panel {
   width: 40rem; /*700px;*/
   height: 25rem; /*400px;*/
-  margin: 0 0 7rem 0;/*0 0 100px 0;*/ /*HERE: sapce between the 2 boxes*/
+  /*margin: 0 0 7rem 0;*/ /*0 0 100px 0;*/ /*HERE: sapce between the 2 boxes*/
   background: #fff;
   box-sizing: border-box;
   border-radius: 4px;
@@ -687,15 +733,84 @@ ul.icons li {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+
+  /*padding-bottom: 10rem;*/
+  cursor: pointer;
 }
 
 .shadow_box {
   box-shadow: 0 0 4rem rgba(5,5,38,.1); /*25px*/
 }
 
-.transparent_box {
+.transparent_box:hover {
   opacity: 0.5;
 }
+
+/* ------------------------ MODEL PANELS: hover text ------------------------ */
+.hvrbox,
+.hvrbox * {
+	box-sizing: border-box;
+}
+.hvrbox {
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+	max-width: 100%;
+	height: auto;
+}
+.hvrbox img {
+	max-width: 100%;
+}
+.hvrbox .hvrbox-layer_bottom {
+	display: block;
+  box-shadow: 0 0 4rem rgba(5,5,38,.1);
+
+}
+.hvrbox .hvrbox-layer_top {
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	color: #fff;
+	padding: 15px;
+	-moz-transition: all 0.4s ease-in-out 0s;
+	-webkit-transition: all 0.4s ease-in-out 0s;
+	-ms-transition: all 0.4s ease-in-out 0s;
+	transition: all 0.4s ease-in-out 0s;
+}
+.hvrbox:hover .hvrbox-layer_top,
+.hvrbox.active .hvrbox-layer_top {
+	opacity: 1;
+}
+.hvrbox .hvrbox-text {
+	text-align: center;
+	font-size: 18px;
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-moz-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+.hvrbox .hvrbox-text_mobile {
+	font-size: 15px;
+	border-top: 1px solid rgb(179, 179, 179); /* for old browsers */
+	border-top: 1px solid rgba(179, 179, 179, 0.7);
+	margin-top: 5px;
+	padding-top: 2px;
+	display: none;
+}
+.hvrbox.active .hvrbox-text_mobile {
+	display: block;
+}
+/*----------------------------------------------------------------------------*/
 
 .model_panel_header {
   margin: 0;
@@ -802,55 +917,13 @@ ul.icons li {
   display: block;
 }
 
+
 #onlyone {
   margin-left: auto;
   margin-right: auto;
   display: block;
 }
 
-/* SCROLL BUTTON - SELECTOR */
-#selectors .container {
-  justify-content: flex-end;
-  display: flex;
-}
-
-#selectors .selector {
-  flex-grow: 1;
-  max-width: 180px; /**/
-  min-width: 110px; /**/
-  margin-left: 30px; /**/
-  margin-top: 6px; /**/
-}
-
-#selectors .selector .select {
-    position: relative;
-}
-
-.selector {
-  /*position: absolute;*/ /*NOPE*/
-  max-width: 55rem;
-	margin-left: auto;
-	margin-right: auto;
-  top: 100%;
-  left: 100%;
-  /*transform: translate(-50%, -50%);*/
-}
-
-.selector select {
-  background: #fff;
-  color: #000000;
-  padding: 10px;
-  width: 200px;
-  height: 50px;
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  border-bottom-width: 2px;
-  font-size: 20px;
-  /*box-shadow: 0 5px 25px rgba(0,0,0,.5);
-  -webkit-appearance: button;
-  outline: none;*/
-}
 
 /* ################################# FOOTER ################################# */
 
@@ -1177,6 +1250,7 @@ margin-left: 3px;
  transition: 1000ms ease-in-out;
  pointer-events: none;  /* pour l'opacité !*/
 }
+
 .overlay.active{
   opacity: 1;
   pointer-events: all;

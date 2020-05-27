@@ -35,8 +35,8 @@
     <div class="container">
 
     <header class="section-title">
-      <h2>Explore</h2>
-      <p>Introduction to the tool</p>
+      <h6>Explore</h6>
+      <p>Choose the network you wish to explore among VGG16, AlexNet and ResNet.</p>
     </header>
     </div>
 
@@ -51,8 +51,8 @@
     <!-- PANELS -->
     <div class="model_panel_main">
       <!-- PANEL 1 -->
-      <a id="panel2" class="model_panel_link" href="vgg_model.html">
-        <div class="model_panel shadow_box">
+      <a class="model_panel_link" href="vgg_model.html"> <!-- id=panel2 href="vgg_model.html" -->
+        <div id="panel1" class="model_panel shadow_box">
           <div class="model_panel_header">
             <h4>VGG 16</h4>
             <br />
@@ -88,25 +88,25 @@
             <!-- <div id="over">
               <img id="onlyone" src="../images/nn.svg"></img>
             </div>-->
-            <div style="z-index:7; left:180px;">
+            <div style="z-index:7; left:10rem;">
               <img src="../images/Conv2d_26_8_max_activ.jpg">
             </div>
-            <div style="z-index:6; left:210px;">
+            <div style="z-index:6; left:12rem;">
               <img src="../images/Conv2d_10_41_max_activ.jpg">
             </div>
-            <div style="z-index:5; left:240px;">
+            <div style="z-index:5; left:14rem;">
               <img src="../images/Conv2d_26_50_max_activ.jpg">
             </div>
-            <div style="z-index:4; left:270px;">
+            <div style="z-index:4; left:16rem;">
               <img src="../images/Conv2d_28_51_max_activ.jpg">
             </div>
-            <div style="z-index:3; left:300px;">
+            <div style="z-index:3; left:18rem;">
               <img src="../images/Conv2d_10_18_max_activ.jpg">
             </div>
-            <div style="z-index:2; left:330px;">
+            <div style="z-index:2; left:20rem;">
               <img src="../images/Conv2d_24_10_max_activ.jpg">
             </div>
-            <div style="z-index:1; left:360px;">
+            <div style="z-index:1; left:22rem;">
               <img src="../images/Conv2d_26_25_max_activ.jpg">
             </div>
           </div>
@@ -116,77 +116,101 @@
       <!-- END PANEL 1 -->
 
       <!-- PANEL 2 -->
-      <a id="panel1" class="model_panel_link" href="#">
-        <div class="model_panel shadow_box transparent_box">
-          <div class="model_panel_header">
-            <h4>AlexNet</h4>
-            <br />
-            <div>
-              Model pretrained on places365 dataset.
-            </div>
-          </div>
+      <a class="model_panel_link"> <!-- id="panel2" href="#" -->
 
-          <div class="model_panel_infos">
-            <div class="model_panel_lefthalf">
-              <!-- div insids this area for every element we will have -->
-              <div class="model_panel_lefthalf_header">
-                Layers
-              </div>
-              <div class="model_panel_lefthalf_txt">
-                5
+        <div class="hvrbox shadow_box">
+
+          <div id="panel2" class="model_panel hvrbox-layer_bottom"> <!-- transparent box -->
+
+            <div class="model_panel_header">
+              <h4>AlexNet</h4>
+              <br />
+              <div>
+                Model pretrained on places365 dataset.
               </div>
             </div>
 
-            <div class="model_panel_righthalf">
-              <!-- div inside -->
-              <div class="model_panel_lefthalf_header">
-                Params
+            <div class="model_panel_infos">
+              <div class="model_panel_lefthalf">
+                <!-- div insids this area for every element we will have -->
+                <div class="model_panel_lefthalf_header">
+                  Layers
+                </div>
+                <div class="model_panel_lefthalf_txt">
+                  5
+                </div>
               </div>
-              <div class="model_panel_lefthalf_txt">
-                61M
-              </div>
-            </div> <!-- end right half -->
-          </div> <!-- end infos -->
 
-        </div> <!-- end bloc/box -->
+              <div class="model_panel_righthalf">
+                <!-- div inside -->
+                <div class="model_panel_lefthalf_header">
+                  Params
+                </div>
+                <div class="model_panel_lefthalf_txt">
+                  61M
+                </div>
+              </div> <!-- end right half -->
+            </div> <!-- end infos -->
+
+            <!-- Over text -->
+            <div class="hvrbox-layer_top">
+          		<div class="hvrbox-text">Coming soon.</div>
+          	</div>
+
+          </div> <!-- end id panel 2 -->
+
+        </div> <!-- end hvrbox shadowed box-->
+
       </a>
       <!-- END PANEL 2 -->
 
 
       <!-- PANEL 3 -->
-      <a id="panel3" class="model_panel_link" href="#">
-        <div class="model_panel shadow_box transparent_box">
-          <div class="model_panel_header">
-            <h4>ResNet</h4>
-            <br />
-            <div>
-              Model pretrained on CIFAR10 dataset.
-            </div>
-          </div>
+      <a class="model_panel_link">
 
-          <div class="model_panel_infos">
-            <div class="model_panel_lefthalf">
-              <!-- div insids this area for every element we will have -->
-              <div class="model_panel_lefthalf_header">
-                Layers
-              </div>
-              <div class="model_panel_lefthalf_txt">
-                50
+        <div class="hvrbox shadow_box">
+
+          <div id="panel3" class="model_panel hvrbox-layer_bottom">
+
+            <div class="model_panel_header">
+              <h4>ResNet</h4>
+              <br />
+              <div>
+                Model pretrained on CIFAR10 dataset.
               </div>
             </div>
 
-            <div class="model_panel_righthalf">
-              <!-- div inside -->
-              <div class="model_panel_righthalf_header">
-                Params
+            <div class="model_panel_infos">
+              <div class="model_panel_lefthalf">
+                <!-- div insids this area for every element we will have -->
+                <div class="model_panel_lefthalf_header">
+                  Layers
+                </div>
+                <div class="model_panel_lefthalf_txt">
+                  50
+                </div>
               </div>
-              <div class="model_panel_righthalf_txt">
-                23M
-              </div>
-            </div> <!-- end right half -->
-          </div> <!-- end infos -->
 
-        </div> <!-- end bloc/box -->
+              <div class="model_panel_righthalf">
+                <!-- div inside -->
+                <div class="model_panel_righthalf_header">
+                  Params
+                </div>
+                <div class="model_panel_righthalf_txt">
+                  23M
+                </div>
+              </div> <!-- end right half -->
+            </div> <!-- end infos -->
+
+            <!-- Over text -->
+            <div class="hvrbox-layer_top">
+              <div class="hvrbox-text">Coming soon.</div>
+            </div>
+
+          </div> <!-- end id panel 3 -->
+
+        </div> <!-- end hvrbox shadowed box-->
+
       </a>
       <!-- END PANEL 3 -->
 
@@ -210,8 +234,8 @@
       }
 
       manageZoom("panel1")
-      manageZoom("panel2")
-      manageZoom("panel3")
+      //manageZoom("panel2")
+      //manageZoom("panel3")
 
 
     </script>
