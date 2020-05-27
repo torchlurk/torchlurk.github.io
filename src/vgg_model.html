@@ -1013,10 +1013,10 @@
                                   <a class=" ActDisplay" href="#actmax_img-display">actmax_img-display</a>
                                   <div class="julien close-div" style="padding-right:0;">&times;</div> -->
                                <!--   chage a to button -->
-                                  <button class=" popUp AvgDisplay" onclick="myFunction(this,'avg_imgs-display')">avg_imgs-display</button>
-                                  <button class=" popUp defaultButton ActDisplay" onclick="myFunction(this,'actmax_img-display')">actmax_img-display</button>
+                                  <button class=" popUp AvgDisplay" onclick="myFunction(this,'avg_imgs-display')">Average Activation</button>
+                                  <button class=" popUp defaultButton ActDisplay" onclick="myFunction(this,'actmax_img-display')">Filter Visualization</button>
 
-                                  <button class="popUp MaxDisplay" onclick="myFunction(this,'max_imgs-display')">max_imgs-display</button>
+                                  <button class="popUp MaxDisplay" onclick="myFunction(this,'max_imgs-display')">Max Activation</button>
                                   <div class="julien close-div" style="padding-right:0;">&times;</div>
 
                       </div>
@@ -1025,22 +1025,22 @@
                       <div class="julien modal-body" onscroll="drawForEffect()">
                           <div class="julien content-wrapper">
                               <div class="julien displayContent hidden" id = "avg_imgs-display" >
-                                 <h2 class="sectionTitel">avg_imgs-display</h2>
+                                 <h2 class="sectionTitel">Average Activation</h2>
 
-                                  <h3 class="julien displayTitel"> histo_counts_avg </h3>
+                                  <h3 class="julien displayTitel">Classes Histogram</h3>
                                   <p class="julien histo_counts_avg-description description"></p>
                                   <div class="julien favCatHistogram histo"></div>
 
                                  <div class="alignButtons">
-                                    <h3 class="julien displayTitel"> avg_imgs </h3>
-                                    <span class ="spanButtonChangeToAvg gauche"> Images </span><span class ="spanButtonChangeToGrad droite"> Gradients </span>
+                                    <h3 class="julien displayTitel"> Top Images </h3>
+                                    <span class ="spanButtonChangeToAvg gauche"> Images </span><span class ="spanButtonChangeToGrad droite">Gradients</span>
 
                                  </div>
 
                                   <p class="julien avg_imgs-description description"></p>
                                   <div class="blockImages">
-                                    <div class="julien avg_imgs-firstRow images"></div>
-                                    <div class="julien avg_imgs-secondRow images"></div>
+                                    <div class="julien avg_imgs-firstRow images rowImages"></div>
+                                    <div class="julien avg_imgs-secondRow images rowImages"></div>
                                  </div>
                               <!--    no more useful --> <!--
                                   <h3 class="julien displayTitel"> avg_imgs_grad </h3>
@@ -1051,7 +1051,7 @@
                                  </div> -->
                                <!--    no more useful -->
 
-                                  <h3 class="julien displayTitel"> favHisto </h3>
+                                  <h3 class="julien displayTitel">Histogram Top</h3>
                                   <p class="julien avg_imgs_histo-description description">
                                   </p>
                                   <div class="julien favHistogram histo"></div>
@@ -1059,20 +1059,20 @@
                               </div>
 
                               <div class="julien displayContent hidden " id ="max_imgs-display" >
-                                 <h2 class="sectionTitel">max_imgs-display</h2>
-                                  <h3 class="julien displayTitel"> histo_counts_max </h3>
+                                 <h2 class="sectionTitel">Max Activation</h2>
+                                  <h3 class="julien displayTitel">Classes Histogram</h3>
                                   <p class="julien histo_counts_max-description description"></p>
                                   <div class="julien maxCatHistogram histo"></div>
 
                                  <div class="alignButtons">
-                                    <h3 class="julien displayTitel"> max_imgs </h3>
+                                    <h3 class="julien displayTitel">Top Images</h3>
                                     <span class ="spanButtonChangeToMax gauche">Images</span><span class ="spanButtonChangeToMaxGrad droite">Gradients</span>
                                  </div>
 
                                   <p class="julien max_imgs-description description"></p>
                                   <div class="blockImages">
-                                    <div class="julien max_imgs-firstRow images"></div>
-                                    <div class="julien max_imgs-secondRow images"></div>
+                                    <div class="julien max_imgs-firstRow images rowImages"></div>
+                                    <div class="julien max_imgs-secondRow images rowImages"></div>
                                  </div>
                                   <!--    no more useful --> 
                                   <!--
@@ -1085,14 +1085,14 @@
                                   <!--    no more useful -->
 
                                  <div class="alignButtons">
-                                    <h3 class="julien displayTitel"> max_imgs_crop </h3>
+                                    <h3 class="julien displayTitel">Cropped</h3>
                                     <span class ="spanButtonChangeToCrop gauche">Images</span><span class ="spanButtonChangeToCropGrad droite">Gradients</span>
                                  </div>
                                  
                                   <p class="julien max_imgs_crop-description description"></p>
                                   <div class="blockImages">
-                                    <div class="julien max_imgs_crop-firstRow images cropImages"></div>
-                                    <div class="julien max_imgs_crop-secondRow images cropImages"></div>
+                                    <div class="julien max_imgs_crop-firstRow images cropImages rowImages"></div>
+                                    <div class="julien max_imgs_crop-secondRow images cropImages rowImages"></div>
 
                                  </div>
                                   
@@ -1108,14 +1108,14 @@
                                  </div>  --!
                                   <!--    no more useful -->
 
-                                  <h3 class="julien displayTitel"> maxHisto </h3>
+                                  <h3 class="julien displayTitel">Histogram Top</h3>
                                   <p class="julien max_imgs_histo-description description"></p>
                                   <div class="julien maxHistogram histo"></div>
                               </div>
 
                               <div class="julien displayContent hidden " id ="actmax_img-display" >
-                                  <h2 class="sectionTitel">actmax_img-display</h2>
-                                  <h3 class="julien displayTitel"> actmax_img </h3>
+                                  <h2 class="sectionTitel">Filter Visualization</h2>
+                                  <h3 class="julien displayTitel">Filter Visualization</h3>
                                   <p class="julien actmax_img-description description">
                                   </p>
                                   <div class="julien actmax_img images filter_viz"></div>

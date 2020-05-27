@@ -614,7 +614,7 @@ function eraseModal(){
 
 /* fonction qui dessine un histo. il faut lui donner la width du svg , le retard, l'effet et un OBJET(CAT/SPIKES) OU UN ARRAY(SPIKES)*/
 // on pourra jouer sur la Height du graph fixée ici a 500, et les margins + text-size
-function drawHistos(CanvasClassName,ArraySpikesOrCategObj,svgWidth = 500, duration = 1000,delay = 1000,categNumber = 10){
+function drawHistos(CanvasClassName,ArraySpikesOrCategObj,svgWidth = 500, duration = 1000,delay = 1000, svgHeight = 400,categNumber = 10){
   let rotate = 0;
   let textAnchor;
   let dataArray = [];
@@ -647,7 +647,7 @@ function drawHistos(CanvasClassName,ArraySpikesOrCategObj,svgWidth = 500, durati
   //htmlCanvas.innerHTML ="";
   // create a svg, give a class name to the svg element and give dimensions
   let canvas = d3.select("."+CanvasClassName);
-  let svgHeight = 400;
+  
   let svg = canvas.append("svg")
           .attr("width",svgWidth)
           .attr("height",svgHeight)
@@ -658,7 +658,7 @@ function drawHistos(CanvasClassName,ArraySpikesOrCategObj,svgWidth = 500, durati
   //let svgWidth = htmlSvg.getBoundingClientRect().width;
   //if(svgWidth == 0){ svgWidth = 900;}
   
-  let margin = { left: 115, right:20, top:20,bottom:170};
+  let margin = { left: 120, right:20, top:20,bottom:170};
   let barsGroupWidth = svgWidth-margin.left-margin.right; //**
   let barsGroupHeight = svgHeight-margin.top-margin.bottom;
   let barsGroup = svg.append("g")//
@@ -715,11 +715,13 @@ function drawHistos(CanvasClassName,ArraySpikesOrCategObj,svgWidth = 500, durati
     favHistogram.innerHTML = "";
     maxCatHistogram.innerHTML ="";
     maxHistogram.innerHTML ="";
+    let modalWidth = modalContainer.clientWidth;
+    let modalHeight = modalContainer.clientHeight;
+    drawHistos("favCatHistogram",filter.histo_counts_avg,modalWidth*0.8, 0,0,modalHeight*0.6 );
+    drawHistos("favHistogram",filter.avg_spikes,modalWidth*0.8,0,0, modalHeight*0.6);
+    drawHistos("maxCatHistogram",filter.histo_counts_max,modalWidth*0.8,0,0,modalHeight*0.6 );
+    drawHistos("maxHistogram",filter.max_spikes, modalWidth*0.8,0,0, modalHeight*0.6);
 
-      drawHistos("favCatHistogram",filter.histo_counts_avg,windowWidth*0.6*0.8, 0,0);
-      drawHistos("favHistogram",filter.avg_spikes,windowWidth*0.6*0.8,0,0);
-      drawHistos("maxCatHistogram",filter.histo_counts_max,windowWidth*0.6*0.8,0,0);
-      drawHistos("maxHistogram",filter.max_spikes, windowWidth*0.6*0.8,0,0);
 
       console.log("resize");
     }
@@ -733,6 +735,8 @@ function drawHistos(CanvasClassName,ArraySpikesOrCategObj,svgWidth = 500, durati
       }else{
       //let windowWidth = document.body.clientWidth;
       let modalWidth = modalContainer.clientWidth;
+      let modalHeight = modalContainer.clientHeight;
+      console.log(modalHeight);
       let layerId = parseInt(modalContainer.dataset.layerId);
       let filterId = parseInt(modalContainer.dataset.filterId);
       let filter = jsonData[layerId].filters[filterId];
@@ -742,10 +746,10 @@ function drawHistos(CanvasClassName,ArraySpikesOrCategObj,svgWidth = 500, durati
       maxCatHistogram.innerHTML ="";
       maxHistogram.innerHTML ="";
   
-        drawHistos("favCatHistogram",filter.histo_counts_avg,modalWidth*0.9, 1000,0);
-        drawHistos("favHistogram",filter.avg_spikes,modalWidth*0.9,1000,0);
-        drawHistos("maxCatHistogram",filter.histo_counts_max,modalWidth*0.9,1000,0);
-        drawHistos("maxHistogram",filter.max_spikes, modalWidth*0.9,1000,0);
+        drawHistos("favCatHistogram",filter.histo_counts_avg,modalWidth*0.8, 1000,0,modalHeight*0.6 );
+        drawHistos("favHistogram",filter.avg_spikes,modalWidth*0.8,1000,0, modalHeight*0.6);
+        drawHistos("maxCatHistogram",filter.histo_counts_max,modalWidth*0.8,1000,0,modalHeight*0.6 );
+        drawHistos("maxHistogram",filter.max_spikes, modalWidth*0.8,1000,0, modalHeight*0.6);
   
       }
       }
