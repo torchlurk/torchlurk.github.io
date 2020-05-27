@@ -329,8 +329,8 @@ margin-left: 3px;
 	font-size: 1vw;
   color: black;
   text-align: justify;
-  padding-right: 5%;
   
+  padding: 0 5%;
   /*margin-bottom: 6%;*/
 
 }
@@ -340,9 +340,11 @@ h2.sectionTitel{
 	text-align: center;
 }
 h3.displayTitel{
+	
 	font-size: 1vw;
   color: black;
   margin-top: 0;
+  padding-left: 5%;
   /*margin-top: 10%;*/
 }
 

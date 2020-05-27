@@ -535,7 +535,7 @@ descrs.forEach( el => el.innerHTML = "lorem industry. Lorem Ipsum has been the i
 
 
 
-/* function to DIsplay NONE */
+/******** function to DIsplay NONE */
 let listOfSections = [];
 listOfSections.push(document.querySelector("#avg_imgs-display"));
 listOfSections.push(document.querySelector("#max_imgs-display"));
@@ -557,6 +557,9 @@ function myFunction(thisButton,targetId){
   let targetDisplay = document.querySelector(`#${targetId}`);
   targetDisplay.classList.remove("hidden");
   modalBody.scrollTo(0,0);
+  
+  drawForEffect();
+
 }
 
 
@@ -721,3 +724,28 @@ function drawHistos(CanvasClassName,ArraySpikesOrCategObj,svgWidth = 500, durati
       console.log("resize");
     }
     });
+
+    function drawForEffect(){
+      //on resize all the histograms have to be redrawn
+      console.log(modalContainer.getBoundingClientRect().width);
+      if(modalContainer.getBoundingClientRect().width == 0){
+      console.log("modal is 0 in width");
+      }else{
+      //let windowWidth = document.body.clientWidth;
+      let modalWidth = modalContainer.clientWidth;
+      let layerId = parseInt(modalContainer.dataset.layerId);
+      let filterId = parseInt(modalContainer.dataset.filterId);
+      let filter = jsonData[layerId].filters[filterId];
+     // console.log(windowWidth);
+      favCatHistogram.innerHTML ="";
+      favHistogram.innerHTML = "";
+      maxCatHistogram.innerHTML ="";
+      maxHistogram.innerHTML ="";
+  
+        drawHistos("favCatHistogram",filter.histo_counts_avg,modalWidth*0.9, 1000,0);
+        drawHistos("favHistogram",filter.avg_spikes,modalWidth*0.9,1000,0);
+        drawHistos("maxCatHistogram",filter.histo_counts_max,modalWidth*0.9,1000,0);
+        drawHistos("maxHistogram",filter.max_spikes, modalWidth*0.9,1000,0);
+  
+      }
+      }
