@@ -37,6 +37,11 @@ body {
   /*background: #004882;*/
 }
 
+a {
+  color: #ee4c2c;
+  text-decoration: none;
+}
+
 /* ################################# TITLES ##################################*/
 /* set color and sizes*/
 
@@ -520,7 +525,7 @@ p {
    font-weight: bold;
    border: 2px solid rgba(238, 76, 44, 0.6);
    transition-duration: 0.4s;
- 	
+
  	font-size: 1rem;
 
    width: 200px;
@@ -589,6 +594,7 @@ p {
 /* ############################## TEAM SECTION ############################## */
 .container p {
   color: #000000;
+  line-height: 1.8;
 }
 /* ############################## IMAGES TEAM ############################### */
 .image {

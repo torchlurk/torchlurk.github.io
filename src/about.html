@@ -7,7 +7,6 @@
 
   <title>Torchlurk </title>
   <link rel="stylesheet" type="text/css" href="style.css">
-  <link rel="stylesheet" type="text/css" href="../lib/swiper/swiper.min.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
@@ -92,25 +91,6 @@
         var xAxis = svg.append("g")
           .attr("transform", "translate(0," + height + ")")
           .attr("class", "xAxisGroup")
-          //.style("text-anchor", "end")
-
-
-          /*
-          var x = d3.scaleTime().range([0, width]);
-          var y = d3.scaleLinear().range([height, 0]);
-
-          // Add the X Axis
-          svg.append("g")
-              .attr("class", "axis")
-              .attr("transform", "translate(0," + height + ")")
-              .call(d3.axisBottom(x).ticks(10))
-              .selectAll("text")
-                .style("text-anchor", "end")
-                .attr("dx", "-.8em")
-                .attr("dy", ".15em")
-                .attr("transform", "rotate(-65)");
-          */
-
 
         // Initialize the Y axiscd Design
         var y = d3.scaleLinear()
@@ -131,8 +111,8 @@
 
            xAxisGroup.selectAll("text").attr("transform",`rotate(${-40})`)
                               .attr("text-anchor", "end");
-          
-            
+
+
 
             // Add Y axis
             y.domain([0, d3.max(data, function(d) { return +d[selectedVar] }) ]);
@@ -187,6 +167,17 @@
 
     <br /><br />
 
+    <p>
+      This visualization made with D3.js allows to dynamically select between 2 features
+      which are indicators of deep learning framework popularity. On one side, we compare
+      scientific publications in 2018 and on the other we compare contributors.
+      TensorFlow remains the most popular framework overall. However, we believe that PyTorch
+      is about to become more and more popular since it has already been closing the gap
+      bewteen its concurrents since several years now.
+    </p>
+
+    <br /><br />
+
     <h2>Related work</h2>
     <p>
       ImageNet is as database gathering a large number of images (several millions annotated images)
@@ -201,12 +192,12 @@
     </p>
     <br />
     <p>
-      A good way to analyse networks and in particular CNN, is by visualizing them (for e.g. layers or filters).
+      A good way to analyse networks and in particular CNN, is by visualizing them (for <i>e.g.</i> layers or filters).
       In their Visualizing and Understanding Convolutional Networks paper, Matthew D. Zeiler and Rob Fergus
       focus on understanding why CNN perform so well. To do so, they propose a visualization technique that
       reveals the input stimuli exciting each feature map (for each layer). Targeting the same goal, Yosinski
       et al propose 2 tools: one to visualize activations for each layer and a second to visualize features at each layer.
-      For the backend of our project, we used their toolbox (available on the GitHub repository cited below) as we are
+      For the backend of our project, we used their toolbox (available on <a href="https://github.com/yosinski/deep-visualization-toolbox">GitHub</a>) as we are
       interested in those information to visualize the networks internal states.
     </p>
 
@@ -214,22 +205,25 @@
 
     <h2>Visualization and design</h2>
   	<p>
-      For the website, we wanted a
+      From the topic selection to the final product, the graphs and the visual identity of the website have been constantly rethought in order to build an intuitive tool.
+      We developed in particular a logo to give our Torchlurk tool a visual identity. It contains in particular the PyTorch logo with a man, the Lurker, viciously inspecting a
+      newspaper which refers to our willingness to carefully inspect what’s inside a network. The logo is incorporated as the <i>O</i> of a simple and modern font.
+
+      For the website, we wanted a refined design: the primary advantage for a tool like the one we developed is that it does not drown the user in a flood of unnecessary information.
+      Instead, it offers a general overview of Torchlurk functionalities.
   	</p>
+
 
     <br /><br />
 
-    <h2>Perspectives</h2>
+    <h2>What's next?</h2>
   	<p>
-      Compute more models if we have more computational power.
-  	</p>
-
-
-    <br /><br />
-
-    <h2>Literature</h2>
-  	<p>
-      blablabla
+      Torchlurk library will be maintained even after the project. As we were limited
+      with the computational power, we wish to compute similar results for AlexNet and resNet.
+      We also don’t want to restrict ourselves to explore deep feedforward networks but we
+      also want to incorporate the possibility to visualize  Recurrent Neural Networks.
+      Finally, we aim to implement new regularization methods to magnify filter visualization
+      in the same way <a href="https://openai.com/blog/microscope/">OpenAI Microscope</a> did with the Lucid library.
   	</p>
 
     </div>
@@ -247,7 +241,7 @@
   <footer id="footer">
     <div class="container">
       <ul class="icons">
-        <li><a href="https://github.com/giustogianni" class="icon fa-github"></a></li>
+        <li><a href="https://github.com/torchlurk/torchlurk.github.io" class="icon fa-github"></a></li>
       </ul>
       <ul class="copyright">
         <li>Yann Mentha, Julien Berger, Gianni Giusto</li>
