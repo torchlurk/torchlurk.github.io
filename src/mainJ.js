@@ -530,9 +530,8 @@ spanButtonChangeToCropGrad.classList.add("active");
    histo_counts_avg-description
    histo_counts_max-description
    */
-let descrs = document.querySelectorAll(".description")
-descrs.forEach( el => el.innerHTML = "lorem industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.");
-} // end of create modal !!
+ 
+}   
 
 
 
@@ -608,7 +607,7 @@ function eraseModal(){
   let descriptions = document.querySelectorAll(".description");
   images.forEach(el => el.innerHTML ="");
   histos.forEach(el => el.innerHTML ="");
-  descriptions.forEach(el => el.innerHTML ="");
+  //descriptions.forEach(el => el.innerHTML ="");
 }
 
 

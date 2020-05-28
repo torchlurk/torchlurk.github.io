@@ -1033,7 +1033,9 @@
                                  <h2 class="sectionTitel">Average Activation</h2>
 
                                   <h3 class="julien displayTitel">Classes Histogram</h3>
-                                  <p class="julien histo_counts_avg-description description"></p>
+                                  <p class="julien histo_counts_avg-description description">
+                                    Top 10 classes activating the current filter the most in terms of average score and their corresponding spikes
+                                  </p>
                                   <div class="julien favCatHistogram histo"></div>
 
                                   <h3 class="julien displayTitel relativeButton"> Top Images </h3>
@@ -1043,7 +1045,9 @@
 
                                  </div>
 
-                                  <p class="julien avg_imgs-description description"></p>
+                                  <p class="julien avg_imgs-description description">
+                                     Images from the train dataset activating the current filter the most in terms of average score. The corresponding gradients can also be displayed.
+                                  </p>
                                   <div class="blockImages">
                                     <div class="julien avg_imgs-firstRow images rowImages"></div>
                                     <div class="julien avg_imgs-secondRow images rowImages"></div>
@@ -1059,7 +1063,8 @@
 
                                   <h3 class="julien displayTitel">Histogram Top</h3>
                                   <p class="julien avg_imgs_histo-description description">
-                                  </p>
+                                  Average spikes corresponding to each of the images above (from top-left to bottom-right)
+                                 </p>
                                   <div class="julien favHistogram histo"></div>
 
                               </div>
@@ -1067,7 +1072,10 @@
                               <div class="julien displayContent hidden " id ="max_imgs-display" >
                                  <h2 class="sectionTitel">Max Activation</h2>
                                   <h3 class="julien displayTitel">Classes Histogram</h3>
-                                  <p class="julien histo_counts_max-description description"></p>
+                                  <p class="julien histo_counts_max-description description">
+                                    Top 10 classes activating the current filter the most in terms of maximum score and their corresponding spikes
+
+                                  </p>
                                   <div class="julien maxCatHistogram histo"></div>
 
                                   <h3 class="julien displayTitel relativeButton">Top Images</h3>
@@ -1076,7 +1084,10 @@
                                     <span class ="spanButtonChangeToMax gauche">Images</span><span class ="spanButtonChangeToMaxGrad droite">Gradients</span>
                                  </div>
 
-                                  <p class="julien max_imgs-description description"></p>
+                                  <p class="julien max_imgs-description description">
+                                    Images from the train dataset activating the current filter the most in terms of maximum score. The corresponding gradients can also be displayed.
+
+                                  </p>
                                   <div class="blockImages">
                                     <div class="julien max_imgs-firstRow images rowImages"></div>
                                     <div class="julien max_imgs-secondRow images rowImages"></div>
@@ -1096,7 +1107,10 @@
                                     <span class ="spanButtonChangeToCrop gauche">Images</span><span class ="spanButtonChangeToCropGrad droite">Gradients</span>
                                  </div>
 
-                                  <p class="julien max_imgs_crop-description description"></p>
+                                  <p class="julien max_imgs_crop-description description">
+                                     Cropped versions of the images above. It corresponds to the location in the original image to which the filter responds maximally.
+                                     
+                                  </p>
                                   <div class="blockImages">
                                     <div class="julien max_imgs_crop-firstRow images cropImages rowImages"></div>
                                     <div class="julien max_imgs_crop-secondRow images cropImages rowImages"></div>
@@ -1116,14 +1130,18 @@
                                   <!--    no more useful -->
 
                                   <h3 class="julien displayTitel">Histogram Top</h3>
-                                  <p class="julien max_imgs_histo-description description"></p>
+                                  <p class="julien max_imgs_histo-description description">
+                                    max spikes corresponding to each of the images above (from top-left to bottom-right)
+
+                                  </p>
                                   <div class="julien maxHistogram histo"></div>
                               </div>
 
                               <div class="julien displayContent hidden " id ="actmax_img-display" >
                                   <h2 class="sectionTitel">Filter Visualization</h2>
-                                  <h3 class="julien displayTitel">Filter Visualization</h3>
-                                  <p class="julien actmax_img-description description">
+                                  <!-- <h3 class="julien displayTitel">Filter Visualization</h3> -->
+                                  <p class="julien actmax_img-description description" style="text-align: center;">
+                                     Artificial image computed by gradient descent inducing the greatest activation for the current filter
                                   </p>
                                   <div class="julien actmax_img images filter_viz"></div>
                               </div>
