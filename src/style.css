@@ -3,6 +3,19 @@
   Torch color: #ee4c2c = rgb(238,76,44)
 */
 
+.TORCHLURKLINK:link{
+  text-decoration: none;
+  color: black;
+}
+
+.TORCHLURKLINK:visited{
+  text-decoration: none;
+  color: black;
+
+}
+
+
+
 * {
   margin: 0;
   padding: 0;
@@ -415,7 +428,7 @@ main {
 }
 
 #buttons-header button {
-  border-radius: 15px;
+  border-radius: 0px;
   /*
   display: block;
 
@@ -497,12 +510,17 @@ p {
  	margin-right: auto;
  	padding: 0.75rem;
 
+   /*
  	border: 2px black solid;
- 	border-radius: 1rem;
+ 	border-radius: 1rem;*/
 
- 	background: #ffffff; /*rgb(150, 200, 255);*/
-
- 	font-weight: bold;
+ 	/*background: #ffffff; /*rgb(150, 200, 255);*/
+   background-color: rgba(238,76,44,0.0);
+   color: rgba(238,76,44);
+   font-weight: bold;
+   border: 2px solid rgba(238, 76, 44, 0.6);
+   transition-duration: 0.4s;
+ 	
  	font-size: 1rem;
 
    width: 200px;
@@ -516,6 +534,11 @@ p {
    /*color: rgba(238,76,44);*/ /*rgba(255,255,255);*/
    cursor:pointer;
  }
+ #selectors button:focus {
+   outline: none;
+
+ }
+
 
  /* SCROLL BUTTON - SELECTOR */
  #selectors .container {

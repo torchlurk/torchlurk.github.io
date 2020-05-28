@@ -132,7 +132,7 @@ function drawGridContainer(layerId){
     console.log("je suis pas Pret...");
   return;}
   else{
-  titelFilter.innerHTML ="Choose your filter";
+  titelFilter.innerHTML ="Choose your Filter";
 
   console.log(jsonData[layerId]);
   let filters = jsonData[layerId].filters;

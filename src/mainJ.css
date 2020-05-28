@@ -1,3 +1,13 @@
+.TORCHLURKLINK:link{
+	text-decoration: none;
+	color: black;
+  }
+  
+  .TORCHLURKLINK:visited{
+	text-decoration: none;
+	color: black;
+  
+  }
 .gifLogo{
 	position: fixed;
 	top: 60%;
@@ -328,8 +338,10 @@ margin-left: 3px;
 .modal-body::-webkit-scrollbar-thumb{
  /* background: linear-gradient(45deg, rgb(236, 226, 226),rgb(32, 32, 34));*/
  /*background-color: rgba(97,95,95,1);*/
- background-color: #ee4c2c;
- background: linear-gradient(#ee4c2c, rgb(255, 255, 255) );
+ 
+ background: #ee4c2c;
+ 
+
 
 
   border-radius: 20px;
