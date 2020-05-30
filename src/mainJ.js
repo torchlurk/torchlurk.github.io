@@ -116,7 +116,11 @@ $.getJSON("../vgg16_imagenet_1.json", function(jsono) {
     jsonData = json_concat;
     console.log(jsonData)
     console.log("json charge");
+    document.querySelector(".bezier").classList.toggle("hide");
     document.querySelector(".gifLogo").remove();
+    document.querySelector(".downloading").remove();
+
+
  
   ///////**** ALL THE JS CODE IS WITHIN THE GETJSON */
   

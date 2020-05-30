@@ -1,5 +1,15 @@
+.downloading{
+	position: absolute;
+	top: 75%;
+	left: 58%;
+	transform: translate(-60%,-60%) scale(1);
+
+}
 
 
+.bezier.hide{
+	visibility: hidden;
+}
 
 .TORCHLURKLINK:link{
 	text-decoration: none;
